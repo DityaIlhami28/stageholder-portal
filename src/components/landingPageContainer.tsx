@@ -13,7 +13,7 @@ const style = `
       transform: translateY(-40px);
     }
     to {
-      opacity: 2;
+      opacity: 1;
       transform: translateY(0);
     }
   }
@@ -26,7 +26,7 @@ const LandingPageContainer = () => {
     return (
         <>
             <style>{style}</style>
-            <Container maxWidth="sm" style={{ textAlign: 'center', paddingTop: '12rem', marginLeft: '20rem' }} className="animated-container">
+            <Container maxWidth="md" style={{ textAlign: 'center', paddingTop: '6rem', paddingBottom: '4rem' }} className="animated-container">
                 <Box mb={2}>
                     <Typography variant="h3" component="h1" gutterBottom fontWeight={'bold'}>
                         Tracking Your <br /> Asset with
@@ -34,31 +34,33 @@ const LandingPageContainer = () => {
                     <Image
                         src={LOGO}
                         alt="Stageholder Logo"
-                        width={500}
-                        height={120}
+                        width={300} 
+                        height={72} 
                     />
                     <Typography
                         variant="body1"
                         color="textSecondary"
                         gutterBottom
                         fontWeight={'bold'}
-                        sx={{ fontSize: '0.875rem' }} // Adjust the font size as needed
+                        sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }} 
                     >
                         The starting point for your next project is based on MUI. <br />
                         Easy customization helps you build apps faster and better.
                     </Typography>
 
-                    <Box display="flex" justifyContent="center" alignItems="center" my={2}>
-                        <Star sx={{ color: '#FFD700' }} />
-                        <Star sx={{ color: '#FFD700' }} />
-                        <Star sx={{ color: '#FFD700' }} />
-                        <Star sx={{ color: '#FFD700' }} />
-                        <Star sx={{ color: '#FFD700' }} />
-                        <Typography variant="body2" color="textSecondary" ml={1} fontWeight={'bold'}>
-                            4.95/5 (939+ reviews)
-                        </Typography>
+                    <Box display="flex" justifyContent="center" alignItems="center" my={2} flexDirection={{ xs: 'column', sm: 'row' }}>
+                        <Box display="flex" alignItems="center" mb={{ xs: 1, sm: 0 }}>
+                            <Star sx={{ color: '#FFD700' }} />
+                            <Star sx={{ color: '#FFD700' }} />
+                            <Star sx={{ color: '#FFD700' }} />
+                            <Star sx={{ color: '#FFD700' }} />
+                            <Star sx={{ color: '#FFD700' }} />
+                            <Typography variant="body2" color="textSecondary" ml={1} fontWeight={'bold'}>
+                                4.95/5 (939+ reviews)
+                            </Typography>
+                        </Box>
                     </Box>
-                    <Box display="flex" justifyContent="center" gap={2} my={2}>
+                    <Box display="flex" justifyContent="center" flexDirection={{ xs: 'column', sm: 'row' }} gap={2} my={2}>
                         <Button
                             variant="contained"
                             size="large"
@@ -69,7 +71,7 @@ const LandingPageContainer = () => {
                                 fontWeight: "bold",
                                 borderRadius: '8px',
                                 '& .MuiSvgIcon-root': {
-                                    fontSize: '1.7rem', // Adjust the icon size as needed
+                                    fontSize: '1.7rem', 
                                 }
                             }}
                             startIcon={<Bolt />}
