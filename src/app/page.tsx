@@ -9,13 +9,13 @@ const Home = () => {
   return (
     <>
       {/* <Divider /> */}
-      <LandingPageContainer />
+      <LandingPageContainer sx={{ mb: 10 }} />
       {/* <Divider />
       <CardHomeContent />
       <Divider />
       <LandingPagePrice />
       <Divider /> */}
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };

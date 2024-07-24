@@ -3,6 +3,6 @@ import React from "react";
 
 export default function AboutUs() {
     return (
-        <CardHomeContent />
+        <CardHomeContent sx={{ mb: 10 }}/>
     );
 }
