@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -19,9 +19,9 @@ import { Divider } from '@mui/material';
 
 const tiers = [
   {
-    title: 'License',
-    subheader: 'Stage Standard',
-    price: '4.99',
+    title: 'Standard',
+    subheader: 'LICENSE',
+    price: '0',
     description: [
       'One end products',
       '12 months updates',
@@ -30,15 +30,15 @@ const tiers = [
     subDescription: [
       'JavaScript version',
       'TypeScript version',
-      'Design resources',
+      'Design Resources',
       'Commercial applications'
     ],
-    buttonText: 'Learn More >',
+    buttonText: 'Learn more',
   },
   {
-    title: 'License',
-    subheader: 'Stage Pro',
-    price: '4.99',
+    title: 'Pro',
+    subheader: 'LICENSE',
+    price: '69.99',
     description: [
       'One end products',
       '12 months updates',
@@ -47,15 +47,15 @@ const tiers = [
     subDescription: [
       'JavaScript version',
       'TypeScript version',
-      'Design resources',
+      'Design Resources',
       'Commercial applications'
     ],
-    buttonText: 'Learn More >',
+    buttonText: 'Learn more',
   },
   {
-    title: 'License',
-    subheader: 'Stage Extended',
-    price: '4.99',
+    title: 'Enterprise',
+    subheader: 'LICENSE',
+    price: '109.99',
     description: [
       'One end products',
       '12 months updates',
@@ -64,49 +64,20 @@ const tiers = [
     subDescription: [
       'JavaScript version',
       'TypeScript version',
-      'Design resources',
+      'Design Resources',
       'Commercial applications'
     ],
-    buttonText: 'Learn More >',
+    buttonText: 'Learn more',
   },
 ];
 
 const defaultTheme = createTheme();
 
 export default function Pricing() {
-  const renderSubDescription = (tier) => {
-    return tier.subDescription.map((subdsc) => {
-      let isStriked = false;
-      let showIcon = <CheckIcon />;
-
-      if (tier.subheader === 'Stage Standard' && ['TypeScript version', 'Design resources', 'Commercial applications'].includes(subdsc)) {
-        isStriked = true;
-        showIcon = <CloseIcon />;
-      } else if (tier.subheader === 'Stage Pro' && ['Commercial applications'].includes(subdsc)) {
-        isStriked = true;
-        showIcon = <CloseIcon />;
-      }
-
-      return (
-        <li key={subdsc} style={{ display: 'flex', alignItems: 'center' }}>
-          {showIcon}
-          <Typography
-            component="span"
-            variant="subtitle1"
-            style={{ marginBottom: 5, marginLeft: '8px', textDecoration: isStriked ? 'line-through' : 'none' }}
-          >
-            {subdsc}
-          </Typography>
-        </li>
-      );
-    });
-  };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
-      {/* Hero unit */}
       <Container disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6 }}>
         <Typography
           fontSize={15}
@@ -133,24 +104,27 @@ export default function Pricing() {
       {/* End hero unit */}
       <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10 }}>
         <Grid container sx={{ outline: 'solid black', backgroundColor: "#E8EBEB" }}>
+
           {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
             <Grid
               item
               key={tier.title}
               xs={12}
-              sm={6}
+              sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
               <Card sx={{outline: 'solid black', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
+                  titleTypographyProps={{ align: 'center', fontWeight: 'bold' }}
+                  subheaderTypographyProps={{ align: 'center' }}
                 />
-                <CardContent>
+                <CardContent sx={{ flexGrow: 1 }}>
                   <Box
                     sx={{
                       display: 'flex',
+                      justifyContent: 'center',
                       alignItems: 'baseline',
                       mb: 2,
                     }}
@@ -165,7 +139,7 @@ export default function Pricing() {
                       /mo
                     </Typography>
                   </Box>
-                  <ul style={{ listStyleType: 'none', marginBottom: 5 }}>
+                  <ul style={{ listStyleType: 'none', padding: 0, marginBottom: 5 }}>
                     {tier.description.map((line) => (
                       <li key={line} style={{ display: 'flex', alignItems: 'center' }}>
                         <CheckIcon />
@@ -175,44 +149,39 @@ export default function Pricing() {
                       </li>
                     ))}
                   </ul>
-                  <Divider />
-                  {tier.subDescription && (
-                    <ul style={{ listStyleType: 'none', marginTop: 5 }}>
-                      {tier.subDescription.map((subDesc) => {
-                        let isCrossedOut = false;
-                        let icon = <CheckIcon />;
-                        let textStyle = {};
+                  <Divider sx={{ my: 2 }} />
+                  <ul style={{ listStyleType: 'none', padding: 0 }}>
+                    {tier.subDescription.map((subDesc) => {
+                      let isCrossedOut = false;
+                      let icon = <CheckIcon />;
+                      let textStyle = {};
 
-                        if (tier.subheader === 'Stage Standard') {
-                          if (['TypeScript version', 'Design resources', 'Commercial applications'].includes(subDesc)) {
-                            isCrossedOut = true;
-                            icon = <CloseIcon />;
-                            textStyle = { textDecoration: 'line-through' };
-                          }
-                        } else if (tier.subheader === 'Stage Pro') {
-                          if (subDesc === 'Commercial applications') {
-                            isCrossedOut = true;
-                            icon = <CloseIcon />;
-                            textStyle = { textDecoration: 'line-through' };
-                          }
-                        }
+                      if (tier.title === 'Standard' && ['TypeScript version', 'Design Resources', 'Commercial applications'].includes(subDesc)) {
+                        isCrossedOut = true;
+                        icon = <CloseIcon />;
+                        textStyle = { textDecoration: 'line-through' };
+                      } else if (tier.title === 'Pro' && ['Commercial applications'].includes(subDesc)) {
+                        isCrossedOut = true;
+                        icon = <CloseIcon />;
+                        textStyle = { textDecoration: 'line-through' };
+                      }
 
-                        return (
-                          <li key={subDesc} style={{ display: 'flex', alignItems: 'center' }}>
-                            {icon}
-                            <Typography component="span" variant="subtitle1" style={{ marginLeft: '8px', ...textStyle }}>
-                              {subDesc}
-                            </Typography>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
+                      return (
+                        <li key={subDesc} style={{ display: 'flex', alignItems: 'center' }}>
+                          {icon}
+                          <Typography component="span" variant="subtitle1" style={{ marginLeft: '8px', ...textStyle }}>
+                            {subDesc}
+                          </Typography>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </CardContent>
                 <CardActions>
                   <Button
                     fullWidth
-                    sx={{ fontSize: 10, fontWeight: 'bold', textAlign: 'end', justifyContent: 'flex-end', color: 'Black' }}
+                    variant={tier.buttonVariant}
+                    sx={{ fontSize: 10, fontWeight: 'bold', justifyContent: 'flex-end', color: 'Black' }}
                   >
                     {tier.buttonText}
                   </Button>
@@ -225,4 +194,3 @@ export default function Pricing() {
     </ThemeProvider>
   );
 }
-

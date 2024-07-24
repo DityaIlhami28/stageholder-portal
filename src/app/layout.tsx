@@ -5,6 +5,7 @@ import { MuiNavBar } from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Divider } from "@mui/material";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
