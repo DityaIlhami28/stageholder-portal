@@ -15,7 +15,7 @@ const Home = () => {
       <Divider />
       <LandingPagePrice />
       <Divider /> */}
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };
