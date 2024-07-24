@@ -4,7 +4,7 @@ import { Container, Grid, Card, CardContent, Typography, Box, Fade } from '@mui/
 import { TrackChanges } from '@mui/icons-material';
 
 // Define the custom upload SVG as a React component
-const CustomUploadIcon = (props) => (
+const CustomUploadIcon = (props : any) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="60" 
@@ -21,7 +21,7 @@ const CustomUploadIcon = (props) => (
 );
 
 // Define the custom QR code SVG as a React component
-const CustomQrCodeIcon = (props) => (
+const CustomQrCodeIcon = (props : any) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="60" 
@@ -40,7 +40,7 @@ const CustomQrCodeIcon = (props) => (
   </svg>
 );
 
-const CustomTrackChangesIcon = (props) => (
+const CustomTrackChangesIcon = (props : any) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="60" 
@@ -59,9 +59,9 @@ const CustomTrackChangesIcon = (props) => (
 const CardHomeContent = () => {
   const [inView, setInView] = useState(false);
 
-  const observer = useRef(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
-  const observeElement = (element) => {
+  const observeElement = (element : any) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(
       ([entry]) => {

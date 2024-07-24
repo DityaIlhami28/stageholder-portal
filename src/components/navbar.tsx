@@ -56,7 +56,7 @@ export const MuiNavBar = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            color="black"
+                            sx={{color:"black"}}
                             aria-label="menu"
                             onClick={drawerOpen}
                         >
@@ -79,7 +79,7 @@ export const MuiNavBar = () => {
                         {menuItems.map((item, index) => (
                             <Link href={item.href} passHref key={index}>
                                 <Button
-                                    variant={item.variant}
+                                    variant={item.variant || "text"}
                                     sx={{
                                         color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
                                         borderColor: item.variant === 'outlined' ? '#212B36' : 'none',
