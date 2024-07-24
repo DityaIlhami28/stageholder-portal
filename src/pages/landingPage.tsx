@@ -4,9 +4,8 @@ import { Box, Divider } from '@mui/material';
 import CardHomeContent from '@/components/cardHomeContent';
 import LandingPagePrice from '@/components/landingPagePrice';
 import Footer from '@/components/footer';
-import LandingPage from '@/pages/landingPage';
 
-const Home = () => {
+const LandingPage = () => {
   return (
     <>
       <LandingPageContainer />
@@ -14,4 +13,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingPage;

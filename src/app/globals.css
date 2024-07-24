@@ -6,7 +6,7 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --background-color: 232, 235, 235;
+  --background-color: 255, 255, 255; /* Changed to white */
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -39,10 +39,10 @@
   --card-border-rgb: 131, 134, 135;
 }
 
+/* Remove the dark mode specific background color to keep it white */
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-color: 20, 20, 20;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
@@ -87,7 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-color));
+  background-color: rgb(var(--background-color)); /* This will be white */
   display: flex;
   flex-direction: column;
   min-height: 100vh;

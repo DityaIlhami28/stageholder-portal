@@ -5,7 +5,6 @@ import { MuiNavBar } from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Divider } from "@mui/material";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,11 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <MuiNavBar />
-        {children}</body>
-        <Divider/>
-        <Footer/>
+        <main style={{ flex: 1 }}>{children}</main>
+        <Divider />
+        <Footer />
+      </body>
     </html>
   );
 }

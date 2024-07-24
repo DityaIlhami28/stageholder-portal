@@ -4,7 +4,7 @@ import React from "react";
 export default function Pricing() {
     return (
         <>
-            <LandingPagePrice sx={{ mb: 10 }} />
+            <LandingPagePrice />
         </>
     );
 }

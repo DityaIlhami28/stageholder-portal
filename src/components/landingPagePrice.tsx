@@ -16,12 +16,60 @@ import Container from '@mui/material/Container';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
+import { keyframes } from '@mui/system';
+
+// Define keyframes for the animations with fade effect
+const slideInFromLeft = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const slideInFromRight = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const slideInFromTop = keyframes`
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+// Define animation styles for each card position
+const animationStyles = {
+  left: {
+    animation: `${slideInFromLeft} 1s ease-out`,
+  },
+  right: {
+    animation: `${slideInFromRight} 1s ease-out`,
+  },
+  center: {
+    animation: `${slideInFromTop} 1s ease-out`,
+  }
+};
 
 const tiers = [
   {
     title: 'License',
     subheader: 'Stage Standard',
-    price: '4.99',
+    price: '0',
     description: [
       'One end products',
       '12 months updates',
@@ -38,7 +86,7 @@ const tiers = [
   {
     title: 'License',
     subheader: 'Stage Pro',
-    price: '4.99',
+    price: '69.99',
     description: [
       'One end products',
       '12 months updates',
@@ -55,7 +103,7 @@ const tiers = [
   {
     title: 'License',
     subheader: 'Stage Extended',
-    price: '4.99',
+    price: '109.99',
     description: [
       'One end products',
       '12 months updates',
@@ -74,34 +122,6 @@ const tiers = [
 const defaultTheme = createTheme();
 
 export default function Pricing() {
-  const renderSubDescription = (tier) => {
-    return tier.subDescription.map((subdsc) => {
-      let isStriked = false;
-      let showIcon = <CheckIcon />;
-
-      if (tier.subheader === 'Stage Standard' && ['TypeScript version', 'Design resources', 'Commercial applications'].includes(subdsc)) {
-        isStriked = true;
-        showIcon = <CloseIcon />;
-      } else if (tier.subheader === 'Stage Pro' && ['Commercial applications'].includes(subdsc)) {
-        isStriked = true;
-        showIcon = <CloseIcon />;
-      }
-
-      return (
-        <li key={subdsc} style={{ display: 'flex', alignItems: 'center' }}>
-          {showIcon}
-          <Typography
-            component="span"
-            variant="subtitle1"
-            style={{ marginBottom: 5, marginLeft: '8px', textDecoration: isStriked ? 'line-through' : 'none' }}
-          >
-            {subdsc}
-          </Typography>
-        </li>
-      );
-    });
-  };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
@@ -132,17 +152,22 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10 }}>
-        <Grid container>
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
+        <Grid container spacing={3}>
+          {tiers.map((tier, index) => (
             <Grid
               item
               key={tier.title}
               xs={12}
               sm={6}
               md={4}
+              sx={{
+                // Apply animations based on card position
+                ...((index === 0 && animationStyles.left) ||
+                (index === 2 && animationStyles.right) ||
+                animationStyles.center)
+              }}
             >
-              <Card sx={{ outline: 'solid black', height: '100%', display: 'flex', flexDirection: 'column', mr: 1, ml: 1 }}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', mr: 1, ml: 1, boxShadow: "none" }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
@@ -225,4 +250,3 @@ export default function Pricing() {
     </ThemeProvider>
   );
 }
-

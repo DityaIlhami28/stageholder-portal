@@ -56,7 +56,7 @@ const CardHomeContent = () => {
                   sx={{
                     height: 300,
                     width: '100%',
-                    bgcolor: '#E8EBEB',
+                    bgcolor: 'white',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
