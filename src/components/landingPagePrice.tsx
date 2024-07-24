@@ -132,7 +132,7 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10 }}>
-        <Grid container sx={{ outline: 'solid black', backgroundColor: "#E8EBEB" }}>
+        <Grid container >
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
@@ -142,7 +142,7 @@ export default function Pricing() {
               sm={6}
               md={4}
             >
-              <Card sx={{outline: 'solid black', height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Card sx={{outline: 'solid black', height: '100%', display: 'flex', flexDirection: 'column', mr: 1, ml: 1 }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
