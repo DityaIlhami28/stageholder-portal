@@ -1,67 +1,54 @@
-'use client'
-
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
+import LOGO from '../assets/Stageholder_Logo-03.png';
+import Image from 'next/image';
 
-const footers = [
-    {
-        title: 'Company',
-        description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-        title: 'Features',
-        description: [
-            'Cool stuff',
-            'Random feature',
-            'Team feature',
-            'Developer stuff',
-            'Another one',
-        ],
-    },
-    {
-        title: 'Resources',
-        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    },
-    {
-        title: 'Legal',
-        description: ['Privacy policy', 'Terms of use'],
-    },
-];
-
-export default function Footer() {
+function Copyright() {
     return (
-        <>
-            <Container
-                maxWidth="md"
-                component="footer"
-                sx={{
-                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-                    mt: 8,
-                    py: [3, 6],
-                }}
-            >
-                <Grid container spacing={4} justifyContent="space-evenly">
-                    {footers.map((footer) => (
-                        <Grid item xs={6} sm={3} key={footer.title}>
-                            <Typography variant="h6" color="text.primary" gutterBottom>
-                                {footer.title}
-                            </Typography>
-                            <ul>
-                                {footer.description.map((item) => (
-                                    <li key={item}>
-                                        <Link href="#" variant="subtitle1" color="text.secondary">
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Grid>
-                    ))}
-                </Grid>
+        <div style={{ textAlign: 'center' }}>
+            <Image src={LOGO} 
+            alt="Stageholder Logo" 
+            width={50}
+            height={50}/>
+            <Typography variant="body2" color="text.secondary">
+                {'© All rights reserved'}
+                <br />
+                {'made by '}
+                <Link style={{ textDecoration: 'none', color: 'blue' }} href="#">
+                    stageholder.co
+                </Link>{' '}
+            </Typography>
+        </div>
+    );
+}
+
+interface FooterProps {
+    description: string;
+    title: string;
+}
+
+export default function Footer(props: FooterProps) {
+    const { description, title } = props;
+
+    return (
+        <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
+            <Container maxWidth="lg">
+                <Typography variant="h6" align="center" gutterBottom>
+                    {title}
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    align="center"
+                    color="text.secondary"
+                    component="p"
+                >
+                    {description}
+                </Typography>
+                <Copyright />
             </Container>
-        </>
-    )
+        </Box>
+    );
 }
