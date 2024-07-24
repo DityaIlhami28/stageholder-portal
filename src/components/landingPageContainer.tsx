@@ -26,7 +26,7 @@ const LandingPageContainer = () => {
     return (
         <>
             <style>{style}</style>
-            <Container maxWidth="md" style={{ textAlign: 'center', paddingTop: '6rem', paddingBottom: '4rem' }} className="animated-container">
+            <Container maxWidth="md" style={{ textAlign: 'center', paddingTop: '6rem', paddingBottom: '4rem', marginLeft: '4rem' }} className="animated-container">
                 <Box mb={2}>
                     <Typography variant="h3" component="h1" gutterBottom fontWeight={'bold'}>
                         Tracking Your <br /> Asset with

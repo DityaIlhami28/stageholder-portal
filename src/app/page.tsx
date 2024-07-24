@@ -8,13 +8,13 @@ import Footer from '@/components/footer';
 const Home = () => {
   return (
     <>
-      <Divider />
+      {/* <Divider /> */}
       <LandingPageContainer />
-      <Divider />
+      {/* <Divider />
       <CardHomeContent />
       <Divider />
       <LandingPagePrice />
-      <Divider />
+      <Divider /> */}
       <Footer/>
     </>
   );
