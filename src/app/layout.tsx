@@ -20,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <MuiNavBar />
+        {/* <MuiNavBar /> */}
         <main style={{ flex: 1 }}>{children}</main>
-        <Divider />
-        <Footer />
+        {/* <Divider />
+        <Footer /> */}
       </body>
     </html>
   );
