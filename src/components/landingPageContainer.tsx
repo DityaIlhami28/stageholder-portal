@@ -1,9 +1,10 @@
-// components/LandingPage.js
+// components/LandingPageContainer.js
+"use client"
 import React from 'react';
-import { Box, Button, Typography, Container } from '@mui/material';
-import { Star, Bolt, OpenInNew } from '@mui/icons-material';
+import { Box, Typography, Container } from '@mui/material';
 import Image from 'next/image';
 import LOGO from '../assets/Stageholder_Logo-05.png';
+import { TypeAnimation } from 'react-type-animation';
 
 // Define keyframes in a style tag
 const style = `
@@ -18,98 +19,87 @@ const style = `
     }
   }
   .animated-container {
-    animation: slideDown 2s ease-out;
+    animation: slideDown 1s ease-out;
   }
 `;
 
 const LandingPageContainer = () => {
-    return (
-        <>
-            <style>{style}</style>
-            <Container maxWidth="md" style={{ textAlign: 'center', paddingTop: '6rem', paddingBottom: '4rem', marginLeft: '4rem' }} className="animated-container">
-                <Box mb={2}>
-                    <Typography variant="h3" component="h1" gutterBottom fontWeight={'bold'}>
-                        Tracking Your <br /> Asset with
-                    </Typography>
-                    <Image
-                        src={LOGO}
-                        alt="Stageholder Logo"
-                        width={300} 
-                        height={72} 
-                    />
-                    <Typography
-                        variant="body1"
-                        color="textSecondary"
-                        gutterBottom
-                        fontWeight={'bold'}
-                        sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }} 
-                    >
-                        The starting point for your next project is based on MUI. <br />
-                        Easy customization helps you build apps faster and better.
-                    </Typography>
-
-                    <Box display="flex" justifyContent="center" alignItems="center" my={2} flexDirection={{ xs: 'column', sm: 'row' }}>
-                        <Box display="flex" alignItems="center" mb={{ xs: 1, sm: 0 }}>
-                            <Star sx={{ color: '#FFD700' }} />
-                            <Star sx={{ color: '#FFD700' }} />
-                            <Star sx={{ color: '#FFD700' }} />
-                            <Star sx={{ color: '#FFD700' }} />
-                            <Star sx={{ color: '#FFD700' }} />
-                            <Typography variant="body2" color="textSecondary" ml={1} fontWeight={'bold'}>
-                                4.95/5 (939+ reviews)
-                            </Typography>
-                        </Box>
-                    </Box>
-                    <Box display="flex" justifyContent="center" flexDirection={{ xs: 'column', sm: 'row' }} gap={2} my={2}>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                backgroundColor: "#212B36",
-                                color: "white",
-                                textTransform: "none",
-                                fontWeight: "bold",
-                                borderRadius: '8px',
-                                '& .MuiSvgIcon-root': {
-                                    fontSize: '1.7rem', 
-                                }
-                            }}
-                            startIcon={<Bolt />}
-                        >
-                            Get Started
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            size="large"
-                            sx={{
-                                color: "#212B36",
-                                borderColor: "#212B36",
-                                textTransform: "none",
-                                fontWeight: "bold",
-                                borderRadius: '8px'
-                            }}
-                            startIcon={<OpenInNew />}
-                        >
-                            Design Preview
-                        </Button>
-                    </Box>
-                    <Button
-                        variant="text"
-                        size="large"
-                        sx={{
-                            color: "#212B36",
-                            textTransform: "none",
-                            fontWeight: "bold",
-                            textDecoration: "underline"
-                        }}
-                        endIcon={<OpenInNew />}
-                    >
-                        Get Free Version
-                    </Button>
-                </Box>
-            </Container>
-        </>
-    );
+  return (
+    <>
+      <style>{style}</style>
+      <Container
+        maxWidth="md"
+        sx={{
+          textAlign: 'left',
+          pt: { xs: '15rem', sm: '15rem', md: '18rem' },
+          pb: '2rem',
+          ml: { xs: 'auto', sm: 'auto', md: '8rem' },
+          mr: { xs: 'auto', sm: 'auto', md: '8rem' }
+        }}
+        className="animated-container"
+      >
+        <Box mb={2}>
+          <Typography
+            variant="h2"
+            component="h1"
+            gutterBottom
+            fontWeight={'bold'}
+            sx={{
+              fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3rem', lg: '3.5rem', xl: '4rem', xxl: '4.5rem', xxxl: '5rem' },
+              textAlign: { xs: 'center', md: 'left' }
+            }}
+          >
+            Tracking Your <br /> Asset with
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              mb: { xs: '1rem', sm: '2rem' }
+            }}
+          >
+            <Box sx={{ width: { xs: '80%', sm: '70%', md: '60%', lg: '50%' } }}>
+              <Image
+                src={LOGO}
+                alt="Stageholder Logo"
+                layout="responsive"
+                width={500}
+                height={120}
+              />
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              fontSize: { xs: '1em', sm: '1.5em', md: '2em' }
+            }}
+          >
+            <TypeAnimation
+              sequence={[
+                'We manage asset maintenance.',
+                1000,
+                'We track asset check-ins and check-outs.',
+                1000,
+                'We monitor asset warranties.',
+                1000,
+                'We provide comprehensive asset records.',
+                1000,
+                'We streamline asset depreciation tracking.',
+                1000,
+                'We support asset lifecycle management.',
+                1000,
+              ]}
+              speed={50}
+              style={{ fontSize: 'inherit' }}
+              wrapper="span"
+              repeat={Infinity}
+            />
+          </Box>
+        </Box>
+      </Container>
+    </>
+  );
 };
 
 export default LandingPageContainer;

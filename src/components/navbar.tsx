@@ -1,6 +1,6 @@
 'use client'
 
-import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
 import Image from "next/image";
 import LOGO from '../assets/Stageholder_Logo-03.png';
 import Link from 'next/link';
@@ -13,12 +13,12 @@ export const MuiNavBar = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const drawerOpen = () => {
-        setOpenDrawer(true)
-    }
+        setOpenDrawer(true);
+    };
 
     const drawerClose = () => {
-        setOpenDrawer(false)
-    }
+        setOpenDrawer(false);
+    };
 
     const menuItems = [
         { text: 'Home', href: '/' },
@@ -33,19 +33,30 @@ export const MuiNavBar = () => {
         <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "none" }}>
             <Toolbar>
                 <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} />
-                <Image
-                    src={LOGO}
-                    alt="Stageholder Logo"
-                    width={50}
-                    height={50}
-                    style={{ marginRight: "auto", marginLeft: "30px" }}
-                />
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        mr: 'auto',
+                        ml: { xs: '20px', sm: '30px', md: '40px' },
+                        width: { xs: '50px', sm: '60px', md: '70px' }
+                    }}
+                >
+                    <Image
+                        src={LOGO}
+                        alt="Stageholder Logo"
+                        width={300}
+                        height={300}
+                        layout="responsive"
+                        quality={100}
+                    />
+                </Box>
                 {isMobile ? (
                     <>
                         <IconButton
                             size="large"
                             edge="end"
-                            color="inherit"
+                            color="black"
                             aria-label="menu"
                             onClick={drawerOpen}
                         >
@@ -65,28 +76,25 @@ export const MuiNavBar = () => {
                     </>
                 ) : (
                     <Stack direction='row' spacing={3} sx={{ mx: "100px" }}>
-                        <Link href="/" passHref>
-                            <Button sx={{ color: "#212B36", textTransform: "none", fontWeight: "bold" }}>Home</Button>
-                        </Link>
-                        <Link href="/features" passHref>
-                            <Button sx={{ color: "#212B36", textTransform: "none", fontWeight: "bold" }}>Features</Button>
-                        </Link>
-                        <Link href="/about-us" passHref>
-                            <Button sx={{ color: "#212B36", textTransform: "none", fontWeight: "bold" }}>About Us</Button>
-                        </Link>
-                        <Link href="/pricing" passHref>
-                            <Button sx={{ color: "#212B36", textTransform: "none", fontWeight: "bold" }}>Pricing</Button>
-                        </Link>
-                        <Link href="/login" passHref>
-                            <Button variant="outlined" sx={{ color: "#212B36", borderColor: "#212B36", textTransform: "none", fontWeight: "bold" }}>Login</Button>
-                        </Link>
-                        <Link href="/register" passHref>
-                            <Button variant="contained" sx={{ backgroundColor: "#212B36", color: "white", textTransform: "none", fontWeight: "bold" }}>Register</Button>
-                        </Link>
+                        {menuItems.map((item, index) => (
+                            <Link href={item.href} passHref key={index}>
+                                <Button
+                                    variant={item.variant}
+                                    sx={{
+                                        color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
+                                        borderColor: item.variant === 'outlined' ? '#212B36' : 'none',
+                                        backgroundColor: item.variant === 'contained' ? '#212B36' : 'none',
+                                        textTransform: 'none',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
+                                    {item.text}
+                                </Button>
+                            </Link>
+                        ))}
                     </Stack>
-                )
-                }
+                )}
             </Toolbar>
         </AppBar>
     );
-}
+};
