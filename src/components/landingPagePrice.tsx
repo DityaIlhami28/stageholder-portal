@@ -101,8 +101,10 @@ export default function Pricing() {
           Choose the plan for your needs. Always flexible to grow
         </Typography>
       </Container>
-      <Container maxWidth="md" component="main" sx={{ mt: 8 }}>
-        <Grid container spacing={5} alignItems="flex-end">
+      {/* End hero unit */}
+      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10 }}>
+        <Grid container sx={{ outline: 'solid black', backgroundColor: "#E8EBEB" }}>
+
           {tiers.map((tier) => (
             <Grid
               item
@@ -111,7 +113,7 @@ export default function Pricing() {
               sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
-              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', padding: 2 }}>
+              <Card sx={{outline: 'solid black', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
