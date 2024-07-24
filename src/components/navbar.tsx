@@ -1,11 +1,17 @@
-'use client'
+'use client';
 
 import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
 import Image from "next/image";
-import LOGO from '../assets/Stageholder_Logo-03.png';
 import Link from 'next/link';
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import LOGO from '../assets/Stageholder_Logo-03.png';
+
+interface MenuItem {
+    text: string;
+    href: string;
+    variant?: 'text' | 'outlined' | 'contained';
+}
 
 export const MuiNavBar = () => {
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -20,7 +26,7 @@ export const MuiNavBar = () => {
         setOpenDrawer(false);
     };
 
-    const menuItems = [
+    const menuItems: MenuItem[] = [
         { text: 'Home', href: '/' },
         { text: 'Features', href: '/features' },
         { text: 'About Us', href: '/about-us' },
