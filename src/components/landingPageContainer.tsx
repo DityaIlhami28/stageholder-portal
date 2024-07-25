@@ -27,7 +27,7 @@ const LandingPageContainer = () => {
   return (
     <>
       <style>{style}</style>
-      <Container
+      <Container id="home"
         maxWidth="md"
         sx={{
           textAlign: 'left',

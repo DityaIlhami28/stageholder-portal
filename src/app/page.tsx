@@ -4,6 +4,7 @@ import { Box, Divider } from '@mui/material';
 import AboutUs from './features/page';
 import Footer from '@/components/footer';
 import { MuiNavBar } from '@/components/navbar';
+import Pricing from '@/components/pricing/landingPagePrice';
 
 const Home = () => {
   return (
@@ -15,6 +16,10 @@ const Home = () => {
       <Divider />
       <Box sx={{ minHeight: '100vh'}}>
         <AboutUs />
+      </Box>
+      <Divider />
+      <Box sx={{ minHeight: '100vh'}}>
+        <Pricing />
       </Box>
       <Divider />
       <Footer />

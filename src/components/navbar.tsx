@@ -2,8 +2,7 @@
 
 import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
 import Image from "next/image";
-import Link from 'next/link';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGO from '../assets/Stageholder_Logo-03.png';
 
@@ -27,13 +26,29 @@ export const MuiNavBar = () => {
     };
 
     const menuItems: MenuItem[] = [
-        { text: 'Home', href: '/' },
-        { text: 'Features', href: '/features' },
-        { text: 'About Us', href: '/about-us' },
-        { text: 'Pricing', href: '/pricing' },
-        { text: 'Login', href: '/login', variant: 'outlined' },
-        { text: 'Register', href: '/register', variant: 'contained' }
+        { text: 'Home', href: 'home' },
+        { text: 'Features', href: 'features' },
+        { text: 'About Us', href: 'about-us' },
+        { text: 'Pricing', href: 'pricing' },
+        { text: 'Login', href: 'login', variant: 'outlined' },
+        { text: 'Register', href: 'register', variant: 'contained' }
     ];
+
+    // Create refs for each section
+    const sectionsRef = menuItems.reduce((acc, item) => {
+        acc[item.href] = useRef<HTMLDivElement>(null);
+        return acc;
+    }, {} as Record<string, React.RefObject<HTMLDivElement>>);
+
+    const handleScroll = (href: string) => {
+        console.log(`Scrolling to ${href}`); // Debugging
+        const section = sectionsRef[href].current;
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.error(`No element found with ID ${href}`);
+        }
+    };
 
     return (
         <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "none" }}>
@@ -62,7 +77,7 @@ export const MuiNavBar = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            sx={{color:"black"}}
+                            sx={{ color: "black" }}
                             aria-label="menu"
                             onClick={drawerOpen}
                         >
@@ -71,10 +86,8 @@ export const MuiNavBar = () => {
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
                             <List sx={{ width: 250 }}>
                                 {menuItems.map((item, index) => (
-                                    <ListItem button key={index} onClick={drawerClose}>
-                                        <Link href={item.href} passHref>
-                                            <ListItemText primary={item.text} />
-                                        </Link>
+                                    <ListItem button key={index} onClick={() => { handleScroll(item.href); drawerClose(); }}>
+                                        <ListItemText primary={item.text} />
                                     </ListItem>
                                 ))}
                             </List>
@@ -83,20 +96,20 @@ export const MuiNavBar = () => {
                 ) : (
                     <Stack direction='row' spacing={3} sx={{ mx: "100px" }}>
                         {menuItems.map((item, index) => (
-                            <Link href={item.href} passHref key={index}>
-                                <Button
-                                    variant={item.variant || "text"}
-                                    sx={{
-                                        color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
-                                        borderColor: item.variant === 'outlined' ? '#212B36' : 'none',
-                                        backgroundColor: item.variant === 'contained' ? '#212B36' : 'none',
-                                        textTransform: 'none',
-                                        fontWeight: 'bold'
-                                    }}
-                                >
-                                    {item.text}
-                                </Button>
-                            </Link>
+                            <Button
+                                key={index}
+                                variant={item.variant || "text"}
+                                sx={{
+                                    color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
+                                    borderColor: item.variant === 'outlined' ? '#212B36' : 'none',
+                                    backgroundColor: item.variant === 'contained' ? '#212B36' : 'none',
+                                    textTransform: 'none',
+                                    fontWeight: 'bold'
+                                }}
+                                onClick={() => handleScroll(item.href)}
+                            >
+                                {item.text}
+                            </Button>
                         ))}
                     </Stack>
                 )}

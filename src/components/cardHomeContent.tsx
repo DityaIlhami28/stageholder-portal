@@ -93,7 +93,7 @@ const CardHomeContent = () => {
   ];
 
   return (
-    <Box mt={10}>
+    <Box id="features" mt={10}>
       <Container maxWidth="md">
         <Box textAlign="center" my={4}>
           <Typography variant="h4" gutterBottom fontWeight={'bold'}>

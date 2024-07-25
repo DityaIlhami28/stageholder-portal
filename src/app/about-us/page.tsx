@@ -2,7 +2,7 @@ import { Container, Typography, Box } from "@mui/material";
 
 const AboutPage = () => {
     return (
-        <Container sx={{ py: 4, mb: 10 }}>
+        <Container id="about-us" sx={{ py: 4, mb: 10 }}>
             <Typography variant="h3" component="h1" gutterBottom>
                 About Stageholder
             </Typography>
