@@ -12,22 +12,23 @@ import Container from '@mui/material/Container';
 import { alpha, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
+import { paths } from '../styles/hooks/routes/path';
+
 import { useTabs } from '../styles/hooks/use-tabs';
 
-// import { CONFIG } from 'src/config-global';
-
-// import { varAlpha } from '../styles/theme/utils';
+import { CONFIG } from '../config-global';
 
 import { Iconify } from '../styles/icon/iconify';
 import { varFade, varScale } from '../styles/animate/variants';
-import { MotionViewport } from '../styles/animate/motion-viewport';
+
+import { MotionViewport } from '@/styles/animate/motion-viewport';
 
 import { SectionTitle } from '../styles/section-title';
 import { FloatLine, FloatXIcon } from '../styles/svg-elements';
 
 // ----------------------------------------------------------------------
 
-export default function Pricing({ sx, ...other }: StackProps) {
+export function HomePricing({ sx, ...other }: StackProps) {
   const theme = useTheme();
 
   const tabs = useTabs('Standard');
@@ -51,8 +52,8 @@ export default function Pricing({ sx, ...other }: StackProps) {
           sx={{
             ...(plan.license === 'Plus' && {
               [theme.breakpoints.down(1440)]: {
-                borderLeft: `dashed 1px ${alpha(theme.palette.grey[500], 0.2)}`,
-                borderRight: `dashed 1px ${alpha(theme.palette.grey[500], 0.2)}`,
+                borderLeft: `dashed 1px ${varAlpha(theme.palette.grey['500'], 0.2)}`,
+                borderRight: `dashed 1px ${varAlpha(theme.palette.grey['500'], 0.2)}`,
               },
             }),
           }}
@@ -67,7 +68,7 @@ export default function Pricing({ sx, ...other }: StackProps) {
         value={tabs.value}
         onChange={tabs.onChange}
         sx={{
-          boxShadow: `0px -2px 0px 0px ${alpha(theme.palette.grey[500], 0.08)} inset`,
+          boxShadow: `0px -2px 0px 0px ${varAlpha(theme.palette.grey['500'], 0.08)} inset`,
         }}
       >
         {PLANS.map((tab) => (
@@ -79,7 +80,6 @@ export default function Pricing({ sx, ...other }: StackProps) {
         sx={{
           width: 1,
           borderRadius: 2,
-          border: `dashed 1px ${alpha(theme.palette.grey[500], 0.2)}`,
         }}
       >
         {PLANS.map(
@@ -267,7 +267,7 @@ function PlanCard({ plan, sx, ...other }: PlanCardProps) {
           size="large"
           target="_blank"
           rel="noopener"
-          href={"/pricing"}
+          href={paths.minimalStore}
         >
           Get started
         </Button>
@@ -295,8 +295,12 @@ const PLANS = [...Array(3)].map((_, index) => ({
     'Commercial applications',
   ],
   icons: [
-    // `${CONFIG.site.basePath}/assets/icons/platforms/ic-js.svg`,
-    // `${CONFIG.site.basePath}/assets/icons/platforms/ic-ts.svg`,
-    // `${CONFIG.site.basePath}/assets/icons/platforms/ic-figma.svg`,
+    `${CONFIG.site.basePath}/assets/icons/platforms/ic-js.svg`,
+    `${CONFIG.site.basePath}/assets/icons/platforms/ic-ts.svg`,
+    `${CONFIG.site.basePath}/assets/icons/platforms/ic-figma.svg`,
   ],
 }));
+function varAlpha(arg0: string, arg1: number) {
+  throw new Error('Function not implemented.');
+}
+

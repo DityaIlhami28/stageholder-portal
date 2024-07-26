@@ -98,39 +98,40 @@ export default function CardPrice() {
                                 boxShadow: 'none',
                             }}
                         >
-                            <CardHeader title={header} />
-                            <CardContent>
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'baseline',
-                                        mb: 2,
-                                    }}
+                            <CardHeader title={header} sx={{ fontSize: 5 }} />
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'baseline',
+                                    mb: 2,
+                                }}
+                            >
+                                <Typography
+                                    component="h2"
+                                    variant="h3"
+                                    color="text.primary"
                                 >
-                                    <Typography
-                                        component="h2"
-                                        variant="h3"
-                                        color="text.primary"
+                                    <Box
+                                        component="span"
+                                        sx={{
+                                            color: 'gray',
+                                            fontSize: '0.7em',
+                                            mr: 0.5,
+                                        }}
                                     >
-                                        <Box
-                                            component="span"
-                                            sx={{
-                                                color: 'gray',
-                                                fontSize: '0.7em',
-                                                mr: 0.5,
-                                            }}
-                                        >
-                                            $
-                                        </Box>
-                                        {tiers[0].price[index]}
-                                    </Typography>
-                                    <Typography
-                                        variant="h6"
-                                        color="text.secondary"
-                                    >
-                                        /mo
-                                    </Typography>
-                                </Box>
+                                        $
+                                    </Box>
+                                    {tiers[0].price[index]}
+                                </Typography>
+                                <Typography
+                                    variant="h6"
+                                    color="text.secondary"
+                                >
+                                    /mo
+                                </Typography>
+                            </Box>
+                            <CardContent>
+
                                 <ul
                                     style={{
                                         listStyleType: 'none',

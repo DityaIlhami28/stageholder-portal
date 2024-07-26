@@ -5,7 +5,6 @@ import AboutUs from './features/page';
 import Footer from '@/components/footer';
 import { MuiNavBar } from '@/components/navbar';
 import Pricing from '@/components/pricing/landingPagePrice';
-
 const Home = () => {
   return (
     <Box sx={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'auto' }}>
