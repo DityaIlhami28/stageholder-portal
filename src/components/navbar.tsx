@@ -26,29 +26,13 @@ export const MuiNavBar = () => {
     };
 
     const menuItems: MenuItem[] = [
-        { text: 'Home', href: 'home' },
-        { text: 'Features', href: 'features' },
-        { text: 'About Us', href: 'about-us' },
-        { text: 'Pricing', href: 'pricing' },
-        { text: 'Login', href: 'login', variant: 'outlined' },
-        { text: 'Register', href: 'register', variant: 'contained' }
+        { text: 'Home', href: '/' },
+        { text: 'Features', href: '/features' },
+        { text: 'About Us', href: '/about-us' },
+        { text: 'Pricing', href: '/pricing' },
+        { text: 'Login', href: '/login', variant: 'outlined' },
+        { text: 'Register', href: '/register', variant: 'contained' }
     ];
-
-    // Create refs for each section
-    const sectionsRef = menuItems.reduce((acc, item) => {
-        acc[item.href] = useRef<HTMLDivElement>(null);
-        return acc;
-    }, {} as Record<string, React.RefObject<HTMLDivElement>>);
-
-    const handleScroll = (href: string) => {
-        console.log(`Scrolling to ${href}`); // Debugging
-        const section = sectionsRef[href].current;
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            console.error(`No element found with ID ${href}`);
-        }
-    };
 
     return (
         <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "none" }}>
@@ -86,7 +70,7 @@ export const MuiNavBar = () => {
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
                             <List sx={{ width: 250 }}>
                                 {menuItems.map((item, index) => (
-                                    <ListItem button key={index} onClick={() => { handleScroll(item.href); drawerClose(); }}>
+                                    <ListItem button key={index} onClick={() => { drawerClose(); }}>
                                         <ListItemText primary={item.text} />
                                     </ListItem>
                                 ))}
@@ -106,7 +90,6 @@ export const MuiNavBar = () => {
                                     textTransform: 'none',
                                     fontWeight: 'bold'
                                 }}
-                                onClick={() => handleScroll(item.href)}
                             >
                                 {item.text}
                             </Button>
