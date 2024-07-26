@@ -1,26 +1,19 @@
 'use client'
 
 import * as React from 'react';
-import { Tab, Tabs, useMediaQuery } from '@mui/material';
+import { Tab, Tabs } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
-import { Divider } from '@mui/material';
 import { keyframes } from '@mui/system';
 import { alpha } from '@mui/material/styles';
 import PricingCard from './cardPrice';
-import { useTabs } from '@/styles/hooks/use-tabs';
+
 // Define keyframes for the animations with fade effect
 const slideInFromLeft = keyframes`
   from {
@@ -108,7 +101,7 @@ export default function Pricing() {
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       {/* Hero unit */}
-      <Container id="pricing" disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6 }}>
+      <Container id="pricing" disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography
           fontSize={12}
           variant='subtitle1'
@@ -133,8 +126,8 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
 
-      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10 }}>
-        <Grid container spacing={3}>
+      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10, border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Grid>
           {/* mobile */}
           <Tabs
             value={value}

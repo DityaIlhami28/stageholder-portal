@@ -4,6 +4,8 @@ import { Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Typo
 import { Box, createTheme } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import MaximizeIcon from '@mui/icons-material/Maximize';
 
 // Define keyframe animations
 const slideInFromLeft = keyframes`
@@ -77,10 +79,9 @@ const theme = createTheme();
 
 export default function CardPrice() {
     return (
-        <Grid container spacing={3}>
+        <Grid container sx={{ border: 'none', '& > *': { border: 'none' } }}>
             {tiers[0].subheader.map((header, index) => {
                 const animationKey = index === 0 ? 'left' : index === 1 ? 'center' : 'right';
-
                 return (
                     <Grid
                         item
@@ -88,72 +89,81 @@ export default function CardPrice() {
                         xs={12}
                         sm={6}
                         md={4}
-                        sx={animationStyles[animationKey]}
+                        sx={{ ...animationStyles[animationKey], border: 'none' }}
                     >
                         <Card
                             sx={{
                                 height: '100%',
+                                width: '100%',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 boxShadow: 'none',
+                                border: 'none',
                             }}
                         >
-                            <CardHeader title={header} sx={{ fontSize: 5 }} />
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'baseline',
-                                    mb: 2,
-                                }}
-                            >
+                            <Box sx={{ border: 'none' }}>
                                 <Typography
                                     component="h2"
                                     variant="h3"
                                     color="text.primary"
                                 >
-                                    <Box
-                                        component="span"
-                                        sx={{
-                                            color: 'gray',
-                                            fontSize: '0.7em',
-                                            mr: 0.5,
-                                        }}
-                                    >
-                                        $
-                                    </Box>
-                                    {tiers[0].price[index]}
-                                </Typography>
-                                <Typography
-                                    variant="h6"
-                                    color="text.secondary"
-                                >
-                                    /mo
-                                </Typography>
-                            </Box>
-                            <CardContent>
+                                    <Box sx={{ display: 'flex', fontWeight: 'bold', fontSize: 15.5 }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                            {tiers[0].subheader[index]}
+                                        </Box>
 
-                                <ul
-                                    style={{
-                                        listStyleType: 'none',
-                                        padding: 0,
-                                        marginBottom: 5,
-                                    }}
-                                >
+                                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', ml: 8 }}>
+                                            <Box
+                                                component="span"
+                                                sx={{
+                                                    color: 'text.primary',
+                                                    fontWeight: 'bold',
+                                                }}
+                                            >
+                                                $
+                                            </Box>
+                                            {tiers[0].price[index]}
+                                        </Box>
+                                    </Box>
+                                </Typography>
+
+                                <Box>
+                                    <MaximizeIcon
+                                        sx={{
+                                            color: tiers[0].subheader[index] === 'Stage Pro' ? 'magenta' :
+                                                tiers[0].subheader[index] === 'Stage Extended' ? 'orange' :
+                                                    'lightgreen' // Anda bisa mengganti defaultColor dengan warna default lainnya
+                                        }}
+                                    />
+                                </Box>
+
+                                <Box>
+                                    Image Icon
+                                </Box>
+                            </Box>
+
+                            <CardContent
+                                sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, border: 'none' }}>
+                                <ul>
                                     {tiers[0].description.map((line) => (
                                         <li
                                             key={line}
                                             style={{
                                                 display: 'flex',
                                                 alignItems: 'center',
+
                                             }}
                                         >
-                                            <CheckIcon />
+                                            <CheckIcon
+                                                sx={{ mb: 2 }} />
                                             <Typography
                                                 component="span"
                                                 variant="subtitle1"
                                                 style={{
-                                                    marginBottom: 5,
                                                     marginLeft: 8,
+                                                    marginBottom: 10,
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
                                                 }}
                                             >
                                                 {line}
@@ -165,8 +175,6 @@ export default function CardPrice() {
                                 {tiers[0].subDescription && (
                                     <ul
                                         style={{
-                                            listStyleType: 'none',
-                                            padding: 0,
                                             marginTop: 5,
                                         }}
                                     >
@@ -182,12 +190,14 @@ export default function CardPrice() {
                                                         alignItems: 'center',
                                                     }}
                                                 >
-                                                    {isCrossedOut ? <CloseIcon /> : <CheckIcon />}
+
+                                                    {isCrossedOut ? <CloseIcon sx={{ mb: 2 }} /> : <CheckIcon sx={{ mb: 2 }} />}
                                                     <Typography
                                                         component="span"
                                                         variant="subtitle1"
                                                         style={{
                                                             marginLeft: 8,
+                                                            marginBottom: 10,
                                                             textDecoration: isCrossedOut ? 'line-through' : 'none',
                                                         }}
                                                     >
@@ -199,24 +209,47 @@ export default function CardPrice() {
                                     </ul>
                                 )}
                             </CardContent>
-                            <CardActions>
+
+                            {/* button */}
+                            <CardActions
+                                sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <Button
-                                    fullWidth
+                                    color='inherit'
+                                    variant={index === 0 || index === tiers[0].subheader.length - 1 ? 'outlined' : 'contained'}
+                                    endIcon={<ArrowForwardIosIcon sx={{ color: index === 0 || index === tiers[0].subheader.length - 1 ? 'black' : 'white' }} />}
                                     sx={{
-                                        fontSize: 10,
-                                        fontWeight: 'bold',
-                                        textAlign: 'end',
-                                        justifyContent: 'flex-end',
+                                        bgcolor: index === 0 || index === tiers[0].subheader.length - 1 ? 'transparent' : 'black',
+                                        height: 50,
+                                        width: '73%',
+                                        justifyContent: 'center',
                                         color: 'black',
-                                    }}
-                                >
-                                    {tiers[0].buttonText}
+                                        border: '1px solid black',
+                                        borderRadius: 2,
+                                        '&:hover': {
+                                            '& .overlay': {
+                                                opacity: 1,
+                                            }
+                                        }
+                                    }} >
+                                    <Typography
+                                        sx={{
+                                            fontFamily: 'Public Sans, sans-serif',
+                                            fontSize: 16,
+                                            fontWeight: 'bold',
+                                            textAlign: 'center',
+                                            textTransform: 'none',
+                                            // color: index === 0 || index === tiers[0].subheader.length - 1 ? 'black' : 'white',
+                                            color: index === 0 || index === tiers[0].subheader.length - 1 ? 'inherit' : 'white',
+                                        }}>
+                                        Learn More
+                                    </Typography>
+
                                 </Button>
                             </CardActions>
                         </Card>
                     </Grid>
                 );
             })}
-        </Grid>
+        </Grid >
     );
 }
