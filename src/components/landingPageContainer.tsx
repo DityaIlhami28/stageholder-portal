@@ -62,9 +62,9 @@ const LandingPageContainer = () => {
               <Image
                 src={LOGO}
                 alt="Stageholder Logo"
-                layout="responsive"
                 width={500}
                 height={120}
+                style={{ width: '100%', height: 'auto' }}
               />
             </Box>
           </Box>
