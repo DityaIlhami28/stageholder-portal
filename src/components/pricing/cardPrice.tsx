@@ -136,7 +136,7 @@ export default function CardPrice() {
                                         sx={{
                                             color: tiers[0].subheader[index] === 'Stage Pro' ? 'magenta' :
                                                 tiers[0].subheader[index] === 'Stage Extended' ? 'orange' :
-                                                    'lightgreen' // Anda bisa mengganti defaultColor dengan warna default lainnya
+                                                    'lightgreen'
                                         }}
                                     />
                                 </Box>
@@ -187,9 +187,7 @@ export default function CardPrice() {
                                             style={{ marginRight: '10px' }}
                                         />
                                     </>
-                                    
                                         )}
-
                                 </Box>
                             </Box>
 
