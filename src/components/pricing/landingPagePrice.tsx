@@ -141,17 +141,18 @@ export default function Pricing() {
               <Tab key={index} value={header} label={header} />
             ))}
           </Tabs>
-
-          <Box
+        </Grid>
+      </Container>
+      <Box
             sx={{
-              width: 1,
-              borderRadius: 2,
-              border: `dashed 1px ${alpha(defaultTheme.palette.grey[500], 0.2)}`,
+              border: `none`,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}>
             <PricingCard />
           </Box>
-        </Grid>
-      </Container>
     </ThemeProvider>
   );
 }

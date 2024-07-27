@@ -72,7 +72,9 @@ const LandingPageContainer = () => {
             sx={{
               display: 'flex',
               justifyContent: { xs: 'center', md: 'flex-start' },
-              fontSize: { xs: '1em', sm: '1.5em', md: '2em' }
+              fontSize: { xs: '1em', sm: '1.5em', md: '2em' },
+              padding: { xs: '1em', sm: '2em', md: 0 }, 
+              textAlign: { xs: 'center', md: 'left' } 
             }}
           >
             <TypeAnimation

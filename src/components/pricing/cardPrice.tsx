@@ -6,6 +6,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MaximizeIcon from '@mui/icons-material/Maximize';
+import JSLOGO from '@/assets/JavaScript-Symbol.png';
+import TSLOGO from '@/assets/typescript-icon.png';
+import FIGMALOGO from '@/assets/figma-logo.png';
+import Image from 'next/image';
 
 // Define keyframe animations
 const slideInFromLeft = keyframes`
@@ -79,7 +83,7 @@ const theme = createTheme();
 
 export default function CardPrice() {
     return (
-        <Grid container sx={{ border: 'none', '& > *': { border: 'none' } }}>
+        <Grid container>
             {tiers[0].subheader.map((header, index) => {
                 const animationKey = index === 0 ? 'left' : index === 1 ? 'center' : 'right';
                 return (
@@ -101,7 +105,7 @@ export default function CardPrice() {
                                 border: 'none',
                             }}
                         >
-                            <Box sx={{ border: 'none' }}>
+                            <Box sx={{ border: 'none', display: 'flex', flexDirection: 'column', ml: 7 }}>
                                 <Typography
                                     component="h2"
                                     variant="h3"
@@ -137,13 +141,60 @@ export default function CardPrice() {
                                     />
                                 </Box>
 
-                                <Box>
-                                    Image Icon
+                                <Box
+                                    height="25px"
+                                    width="25px"
+                                    sx={{ display: 'flex', mb: 5 }}>
+                                    {header === 'Stage Standard' ? (
+                                        <>
+                                        <Image
+                                            src={JSLOGO}
+                                            alt='JavaScript Logo'
+                                            layout='responsive'
+                                            width={10}
+                                            height={10}
+                                            style={{ marginRight: '10px' }}
+                                        />
+                                        <Typography>
+                                            (Only)
+                                        </Typography>
+                                        </>
+                                    ):(
+                                    <>
+                                        <Image
+                                            src={JSLOGO}
+                                            alt='JavaScript Logo'
+                                            layout='responsive'
+                                            width={10}
+                                            height={10}
+                                            style={{ marginRight: '10px' }}
+                                        />
+                                        <Image
+                                            src={TSLOGO}
+                                            alt='TypeScript Logo'
+                                            layout='responsive'
+                                            width={4}
+                                            height={4}
+                                            style={{ marginRight: '10px' }}
+
+                                        />
+                                        <Image
+                                            src={FIGMALOGO}
+                                            alt='Figma Logo'
+                                            layout='responsive'
+                                            width={5}
+                                            height={5}
+                                            style={{ marginRight: '10px' }}
+                                        />
+                                    </>
+                                    
+                                        )}
+
                                 </Box>
                             </Box>
 
                             <CardContent
-                                sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, border: 'none' }}>
+                                sx={{ display: 'flex', flexDirection: 'column', ml: 7 }}>
                                 <ul>
                                     {tiers[0].description.map((line) => (
                                         <li

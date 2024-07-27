@@ -35,7 +35,7 @@ export const MuiNavBar = () => {
     ];
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "none" }}>
+        <AppBar position="fixed" sx={{ backgroundColor: "white", boxShadow: "none" }}>
             <Toolbar>
                 <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} />
                 <Box
