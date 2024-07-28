@@ -70,7 +70,7 @@ export const MuiNavBar = () => {
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
                             <List sx={{ width: 250 }}>
                                 {menuItems.map((item, index) => (
-                                    <Button href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start', textTransform: 'none' }}>
+                                    <Button key={index} href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start', textTransform: 'none' }}>
                                         <ListItem button key={index} onClick={() => { drawerClose(); }}>
                                             <ListItemText primary={item.text} />
                                         </ListItem>
