@@ -101,7 +101,8 @@ export default function Pricing() {
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       {/* Hero unit */}
-      <Container id="pricing" disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container
+        disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography
           fontSize={12}
           variant='subtitle1'
@@ -144,15 +145,15 @@ export default function Pricing() {
         </Grid>
       </Container>
       <Box
-            sx={{
-              border: `none`,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <PricingCard />
-          </Box>
+        sx={{
+          border: `none`,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <PricingCard />
+      </Box>
     </ThemeProvider>
   );
 }

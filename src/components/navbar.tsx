@@ -27,11 +27,11 @@ export const MuiNavBar = () => {
 
     const menuItems: MenuItem[] = [
         { text: 'Home', href: '/' },
-        { text: 'Features', href: '/features' },
+        { text: 'Features', href: '#features' },
         { text: 'About Us', href: '/about-us' },
-        { text: 'Pricing', href: '/pricing' },
-        { text: 'Login', href: '/login', variant: 'outlined' },
-        { text: 'Register', href: '/register', variant: 'contained' }
+        { text: 'Pricing', href: '#pricing' },
+        { text: 'Login', href: '#login', variant: 'outlined' },
+        { text: 'Register', href: '#register', variant: 'contained' }
     ];
 
     return (
@@ -70,9 +70,11 @@ export const MuiNavBar = () => {
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
                             <List sx={{ width: 250 }}>
                                 {menuItems.map((item, index) => (
-                                    <ListItem button key={index} onClick={() => { drawerClose(); }}>
-                                        <ListItemText primary={item.text} />
-                                    </ListItem>
+                                    <Button href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start', textTransform: 'none' }}>
+                                        <ListItem button key={index} onClick={() => { drawerClose(); }}>
+                                            <ListItemText primary={item.text} />
+                                        </ListItem>
+                                    </Button>
                                 ))}
                             </List>
                         </Drawer>
@@ -83,6 +85,7 @@ export const MuiNavBar = () => {
                             <Button
                                 key={index}
                                 variant={item.variant || "text"}
+                                href={item.href}
                                 sx={{
                                     color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
                                     borderColor: item.variant === 'outlined' ? '#212B36' : 'none',

@@ -9,15 +9,15 @@ const Home = () => {
   return (
     <Box sx={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'auto' }}>
       <MuiNavBar />
-      <Box sx={{ minHeight: '100vh'}}>
+      <Box sx={{ minHeight: '100vh' }}>
         <LandingPageContainer />
       </Box>
-      <Divider />
-      <Box sx={{ minHeight: '100vh'}}>
+      <Divider id="features" />
+      <Box sx={{ minHeight: '100vh' }}>
         <AboutUs />
       </Box>
-      <Divider />
-      <Box sx={{ minHeight: '100vh'}}>
+      <Divider id="pricing" />
+      <Box sx={{ minHeight: '100vh' }}>
         <Pricing />
       </Box>
       <Divider />
