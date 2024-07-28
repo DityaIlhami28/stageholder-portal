@@ -93,7 +93,7 @@ const LandingPageContainer = () => {
                 1000,
               ]}
               speed={50}
-              style={{ fontSize: 'inherit' }}
+              style={{ fontSize: 'inherit',color: 'black' }}
               wrapper="span"
               repeat={Infinity}
             />
