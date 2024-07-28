@@ -45,6 +45,7 @@ const LandingPageContainer = () => {
             gutterBottom
             fontWeight={'bold'}
             sx={{
+              color: 'black',
               fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3rem', lg: '3.5rem', xl: '4rem', xxl: '4.5rem', xxxl: '5rem' },
               textAlign: { xs: 'center', md: 'left' }
             }}

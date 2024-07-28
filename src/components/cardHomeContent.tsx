@@ -97,7 +97,7 @@ const CardHomeContent = () => {
       mt={10}>
       <Container maxWidth="md">
         <Box textAlign="center" my={4}>
-          <Typography variant="h4" gutterBottom fontWeight={'bold'}>
+          <Typography variant="h4" gutterBottom fontWeight={'bold'} sx={{ color: 'black' }}>
             What Stageholder helps you?
           </Typography>
         </Box>
