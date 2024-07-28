@@ -4,14 +4,12 @@ import * as React from 'react';
 import { Tab, Tabs } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import { keyframes } from '@mui/system';
-import { alpha } from '@mui/material/styles';
+import { alpha, keyframes } from '@mui/material/styles';
 import PricingCard from './cardPrice';
 
 // Define keyframes for the animations with fade effect
@@ -83,24 +81,17 @@ const tiers = [
 
 const defaultTheme = createTheme();
 
-const renderDesktop = (
-  <Box gridTemplateColumns="repeat(3, 1fr)" sx={{ display: { xs: 'none', md: 'grid' } }}>
-    <PricingCard />
-  </Box>
-);
-
 export default function Pricing() {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = React.useState('Stage Standard');
 
-  const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
-  // const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
-      {/* Hero unit */}
       <Container
         disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography
@@ -125,11 +116,9 @@ export default function Pricing() {
           Choose the plan for your needs. Always flexible to grow
         </Typography>
       </Container>
-      {/* End hero unit */}
 
       <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10, border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Grid>
-          {/* mobile */}
           <Tabs
             value={value}
             onChange={handleChange}
@@ -138,8 +127,8 @@ export default function Pricing() {
               display: { md: "none" }
             }}
           >
-            {tiers[0].subheader.map((header, index) => (
-              <Tab key={index} value={header} label={header} />
+            {tiers[0].subheader.map((header) => (
+              <Tab key={header} value={header} label={header} />
             ))}
           </Tabs>
         </Grid>
@@ -152,7 +141,7 @@ export default function Pricing() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <PricingCard />
+        <PricingCard selectedStage={value} />
       </Box>
     </ThemeProvider>
   );

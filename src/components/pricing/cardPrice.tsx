@@ -81,10 +81,12 @@ const tiers = [
 
 const theme = createTheme();
 
-export default function CardPrice() {
+export default function CardPrice({ selectedStage }) {
     return (
-        <Grid container>
+        <Grid container spacing={4}>
             {tiers[0].subheader.map((header, index) => {
+                if (selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
+
                 const animationKey = index === 0 ? 'left' : index === 1 ? 'center' : 'right';
                 return (
                     <Grid
@@ -115,7 +117,6 @@ export default function CardPrice() {
                                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                                             {tiers[0].subheader[index]}
                                         </Box>
-
                                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', ml: 8 }}>
                                             <Box
                                                 component="span"
@@ -147,47 +148,46 @@ export default function CardPrice() {
                                     sx={{ display: 'flex', mb: 5 }}>
                                     {header === 'Stage Standard' ? (
                                         <>
-                                        <Image
-                                            src={JSLOGO}
-                                            alt='JavaScript Logo'
-                                            layout='responsive'
-                                            width={10}
-                                            height={10}
-                                            style={{ marginRight: '10px' }}
-                                        />
-                                        <Typography>
-                                            (Only)
-                                        </Typography>
+                                            <Image
+                                                src={JSLOGO}
+                                                alt='JavaScript Logo'
+                                                layout='responsive'
+                                                width={10}
+                                                height={10}
+                                                style={{ marginRight: '10px' }}
+                                            />
+                                            <Typography>
+                                                (Only)
+                                            </Typography>
                                         </>
-                                    ):(
-                                    <>
-                                        <Image
-                                            src={JSLOGO}
-                                            alt='JavaScript Logo'
-                                            layout='responsive'
-                                            width={10}
-                                            height={10}
-                                            style={{ marginRight: '10px' }}
-                                        />
-                                        <Image
-                                            src={TSLOGO}
-                                            alt='TypeScript Logo'
-                                            layout='responsive'
-                                            width={4}
-                                            height={4}
-                                            style={{ marginRight: '10px' }}
-
-                                        />
-                                        <Image
-                                            src={FIGMALOGO}
-                                            alt='Figma Logo'
-                                            layout='responsive'
-                                            width={5}
-                                            height={5}
-                                            style={{ marginRight: '10px' }}
-                                        />
-                                    </>
-                                        )}
+                                    ) : (
+                                        <>
+                                            <Image
+                                                src={JSLOGO}
+                                                alt='JavaScript Logo'
+                                                layout='responsive'
+                                                width={10}
+                                                height={10}
+                                                style={{ marginRight: '10px' }}
+                                            />
+                                            <Image
+                                                src={TSLOGO}
+                                                alt='TypeScript Logo'
+                                                layout='responsive'
+                                                width={4}
+                                                height={4}
+                                                style={{ marginRight: '10px' }}
+                                            />
+                                            <Image
+                                                src={FIGMALOGO}
+                                                alt='Figma Logo'
+                                                layout='responsive'
+                                                width={5}
+                                                height={5}
+                                                style={{ marginRight: '10px' }}
+                                            />
+                                        </>
+                                    )}
                                 </Box>
                             </Box>
 
@@ -239,7 +239,6 @@ export default function CardPrice() {
                                                         alignItems: 'center',
                                                     }}
                                                 >
-
                                                     {isCrossedOut ? <CloseIcon sx={{ mb: 2 }} /> : <CheckIcon sx={{ mb: 2 }} />}
                                                     <Typography
                                                         component="span"
@@ -259,7 +258,6 @@ export default function CardPrice() {
                                 )}
                             </CardContent>
 
-                            {/* button */}
                             <CardActions
                                 sx={{ display: 'flex', justifyContent: 'center' }}>
                                 <Button
@@ -287,7 +285,6 @@ export default function CardPrice() {
                                             fontWeight: 'bold',
                                             textAlign: 'center',
                                             textTransform: 'none',
-                                            // color: index === 0 || index === tiers[0].subheader.length - 1 ? 'black' : 'white',
                                             color: index === 0 || index === tiers[0].subheader.length - 1 ? 'inherit' : 'white',
                                         }}>
                                         Learn More
@@ -299,6 +296,6 @@ export default function CardPrice() {
                     </Grid>
                 );
             })}
-        </Grid >
+        </Grid>
     );
 }
