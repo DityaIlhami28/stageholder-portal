@@ -81,11 +81,11 @@ const tiers = [
 
 const theme = createTheme();
 
-export default function CardPrice({ selectedStage }) {
+export default function CardPrice({ selectedStage }: { selectedStage: any }) {
     return (
         <Grid container spacing={4}>
             {tiers[0].subheader.map((header, index) => {
-                if (selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
+                if (typeof window !== 'undefined' && selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
 
                 const animationKey = index === 0 ? 'left' : index === 1 ? 'center' : 'right';
                 return (
