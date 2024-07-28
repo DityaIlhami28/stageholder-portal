@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MaximizeIcon from '@mui/icons-material/Maximize';
 import JSLOGO from '@/assets/JavaScript-Symbol.png';
 import TSLOGO from '@/assets/typescript-icon.png';
-import FIGMALOGO from '@/assets/figma-logo.png';
+// import FIGMALOGO from '@/assets/figma-logo.png';
 import Image from 'next/image';
 
 // Define keyframe animations
@@ -178,14 +178,6 @@ export default function CardPrice({ selectedStage }: { selectedStage: any }) {
                                                 height={4}
                                                 style={{ marginRight: '10px' }}
                                             />
-                                            <Image
-                                                src={FIGMALOGO}
-                                                alt='Figma Logo'
-                                                layout='responsive'
-                                                width={5}
-                                                height={5}
-                                                style={{ marginRight: '10px' }}
-                                            />
                                         </>
                                     )}
                                 </Box>
@@ -287,7 +279,7 @@ export default function CardPrice({ selectedStage }: { selectedStage: any }) {
                                             textTransform: 'none',
                                             color: index === 0 || index === tiers[0].subheader.length - 1 ? 'inherit' : 'white',
                                         }}>
-                                        Learn More
+                                        Contact Us
                                     </Typography>
 
                                 </Button>
