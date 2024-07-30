@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MaximizeIcon from '@mui/icons-material/Maximize';
 import JSLOGO from '@/assets/JavaScript-Symbol.png';
 import TSLOGO from '@/assets/typescript-icon.png';
-import FIGMALOGO from '@/assets/figma-logo.png';
+// import FIGMALOGO from '@/assets/figma-logo.png';
 import Image from 'next/image';
 
 // Define keyframe animations
@@ -81,15 +81,11 @@ const tiers = [
 
 const theme = createTheme();
 
-interface CardPriceProps {
-    selectedStage: string;
-}
-
-export default function CardPrice({ selectedStage }: CardPriceProps) {
+export default function CardPrice({ selectedStage }: { selectedStage: any }) {
     return (
         <Grid container spacing={4}>
             {tiers[0].subheader.map((header, index) => {
-                if (selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
+                if (typeof window !== 'undefined' && selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
 
                 const animationKey = index === 0 ? 'left' : index === 1 ? 'center' : 'right';
                 return (
@@ -180,14 +176,6 @@ export default function CardPrice({ selectedStage }: CardPriceProps) {
                                                 layout='responsive'
                                                 width={4}
                                                 height={4}
-                                                style={{ marginRight: '10px' }}
-                                            />
-                                            <Image
-                                                src={FIGMALOGO}
-                                                alt='Figma Logo'
-                                                layout='responsive'
-                                                width={5}
-                                                height={5}
                                                 style={{ marginRight: '10px' }}
                                             />
                                         </>
@@ -291,7 +279,7 @@ export default function CardPrice({ selectedStage }: CardPriceProps) {
                                             textTransform: 'none',
                                             color: index === 0 || index === tiers[0].subheader.length - 1 ? 'inherit' : 'white',
                                         }}>
-                                        Learn More
+                                        Contact Us
                                     </Typography>
 
                                 </Button>
