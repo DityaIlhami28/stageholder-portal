@@ -37,7 +37,6 @@ export const MuiNavBar = () => {
     return (
         <AppBar position="fixed" sx={{ backgroundColor: "white", boxShadow: "none" }}>
             <Toolbar>
-                <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} />
                 <Box
                     sx={{
                         display: 'flex',
@@ -70,7 +69,7 @@ export const MuiNavBar = () => {
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
                             <List sx={{ width: 250 }}>
                                 {menuItems.map((item, index) => (
-                                    <Button key={index} href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start',  fontWeight: 'bold',color: 'black' }}>
+                                    <Button key={index} href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start', fontWeight: 'bold', color: 'black' }}>
                                         <ListItem button key={index} onClick={() => { drawerClose(); }}>
                                             <ListItemText primary={item.text} />
                                         </ListItem>

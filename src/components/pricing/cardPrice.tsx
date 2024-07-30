@@ -81,7 +81,11 @@ const tiers = [
 
 const theme = createTheme();
 
-export default function CardPrice({ selectedStage }) {
+interface CardPriceProps {
+    selectedStage: string;
+}
+
+export default function CardPrice({ selectedStage }: CardPriceProps) {
     return (
         <Grid container spacing={4}>
             {tiers[0].subheader.map((header, index) => {
