@@ -27,9 +27,9 @@ export const MuiNavBar = () => {
 
     const menuItems: MenuItem[] = [
         { text: 'Home', href: '/' },
-        { text: 'Features', href: '#features' },
+        { text: 'Features', href: '/features' }, //kalo mau dibikin slide tinggal ganti "/" jadi "#" nih dot
         { text: 'About Us', href: '/about-us' },
-        { text: 'Pricing', href: '#pricing' },
+        { text: 'Pricing', href: '/pricing' },
         { text: 'Login', href: '#login', variant: 'outlined' },
         { text: 'Register', href: '#register', variant: 'contained' }
     ];
