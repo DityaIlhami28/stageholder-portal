@@ -63,9 +63,8 @@ const CardHomeContent = () => {
   ];
 
   return (
-    <Box
-      mt={10}>
-      <Container maxWidth="md">
+    
+      <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center', mt: 10 }}>
         <Box textAlign="center" my={4}>
           <Typography variant="h4" gutterBottom fontWeight={'bold'} sx={{ color: 'black' }}>
             What Stageholder helps you?
@@ -101,7 +100,6 @@ const CardHomeContent = () => {
           ))}
         </Grid>
       </Container>
-    </Box>
   );
 };
 

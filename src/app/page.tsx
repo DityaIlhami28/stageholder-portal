@@ -12,14 +12,14 @@ const Home = () => {
       <Box sx={{ minHeight: '100vh' }}>
         <LandingPageContainer />
       </Box>
-      <Divider id="features" />
+      {/* <Divider id="features" />
       <Box sx={{ minHeight: '100vh' }}>
         <AboutUs />
-      </Box>
-      <Divider id="pricing" />
+      </Box> */}
+      {/* <Divider id="pricing" />
       <Box sx={{ minHeight: '100vh' }}>
         <Pricing />
-      </Box>
+      </Box> */}
       <Divider />
       <Footer />
     </Box>
