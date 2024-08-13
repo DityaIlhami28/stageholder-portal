@@ -1,7 +1,8 @@
-"use client"
-import React, { useState, useEffect, useRef } from 'react';
+"use client";
+
+import React, { useState, useRef } from 'react';
 import { Container, Grid, Card, CardContent, Typography, Box, Fade } from '@mui/material';
-import { TrackChanges } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
 import CustomTrackChangesIcon from '@/assets/icons/trackingIcon';
 import CustomQrCodeIcon from '@/assets/icons/qrCodeIcon';
 import CustomUploadIcon from '@/assets/icons/uploadIcon';
@@ -13,8 +14,8 @@ import SupportIcon from '@/assets/icons/supportIcon';
 
 const CardHomeContent = () => {
   const [inView, setInView] = useState(false);
-
   const observer = useRef<IntersectionObserver | null>(null);
+  const theme = useTheme(); // Access the theme
 
   const observeElement = (element: any) => {
     if (observer.current) observer.current.disconnect();
@@ -53,7 +54,7 @@ const CardHomeContent = () => {
     {
       icon: <MaintenanceIcon />,
       title: 'Maintenance',
-      description: 'Manage your assets maintenace with ease.',
+      description: 'Manage your assets maintenance with ease.',
     },
     {
       icon: <SupportIcon />,
@@ -63,10 +64,18 @@ const CardHomeContent = () => {
   ];
 
   return (
-    
+    <Box
+      sx={{
+        minHeight: '100vh', // Ensure it covers the full viewport height
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212', // Full background color
+      }}
+    >
       <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center', mt: 10 }}>
         <Box textAlign="center" my={4}>
-          <Typography variant="h4" gutterBottom fontWeight={'bold'} sx={{ color: 'black' }}>
+          <Typography variant="h4" gutterBottom fontWeight={'bold'} sx={{ color: theme.palette.text.primary }}>
             What Stageholder helps you?
           </Typography>
         </Box>
@@ -79,7 +88,8 @@ const CardHomeContent = () => {
                   sx={{
                     height: 300,
                     width: '100%',
-                    bgcolor: 'white',
+                    bgcolor: theme.palette.background.paper, // Use the theme's background color
+                    color: theme.palette.text.primary, // Use the theme's text color
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -89,7 +99,7 @@ const CardHomeContent = () => {
                 >
                   <CardContent style={{ textAlign: 'center' }}>
                     {card.icon}
-                    <Typography variant="h5" gutterBottom>
+                    <Typography variant="h5" gutterBottom sx={{ color: theme.palette.text.primary }}>
                       {card.title}
                     </Typography>
                     <Typography variant="body1">{card.description}</Typography>
@@ -100,6 +110,7 @@ const CardHomeContent = () => {
           ))}
         </Grid>
       </Container>
+    </Box>
   );
 };
 
