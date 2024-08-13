@@ -107,7 +107,7 @@ export default function CardPrice({ selectedStage }: { selectedStage: any }) {
                                 border: 'none',
                             }}
                         >
-                            <Box sx={{ border: 'none', display: 'flex', flexDirection: 'column', ml: 7 }}>
+                            <Box sx={{ border: 'none', display: 'flex', flexDirection: 'column', ml: 7, mt: 5 }}>
                                 <Typography
                                     component="h2"
                                     variant="h3"

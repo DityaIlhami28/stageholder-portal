@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Grid, Tab, Tabs } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
@@ -80,7 +80,7 @@ const tiers = [
 
 
 export default function Pricing() {
-  const defaultTheme = createTheme();
+  const theme = useTheme();
   const [value, setValue] = React.useState('Stage Standard');
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
@@ -88,11 +88,11 @@ export default function Pricing() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <Container
-        disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        disableGutters maxWidth="sm" component="main" sx={{ mt: 5, pt: 8, pb: 6, display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212' }}>
         <Typography
           fontSize={12}
           variant='subtitle1'
@@ -107,7 +107,7 @@ export default function Pricing() {
           color="text.primary"
           gutterBottom
           fontWeight='bold'
-          sx={{ mt: 5, mb: 3}}
+          sx={{ mt: 5, mb: 3 }}
         >
           The right plan <br /> for your business
         </Typography>
@@ -116,14 +116,15 @@ export default function Pricing() {
         </Typography>
       </Container>
 
-      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 10, border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 5, border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Grid>
           <Tabs
             value={value}
             onChange={handleChange}
             sx={{
-              boxShadow: `0px -2px 0px 0px ${alpha(defaultTheme.palette.grey[500], 0.08)} inset`,
-              display: { md: "none" }
+              mt: 5,
+              pt: 5,
+              background: theme.palette.mode === 'light' ? 'white' : '#121212',
             }}
           >
             {tiers[0].subheader.map((header) => (

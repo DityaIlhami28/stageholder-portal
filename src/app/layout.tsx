@@ -25,7 +25,6 @@ export default function RootLayout({
   const toggleColorMode = () => {
     setMode((prevMode) => {
       const newMode = prevMode === 'light' ? 'dark' : 'light';
-      console.log(`Theme changed to: ${newMode}`);
       return newMode;
     });
   };
@@ -67,7 +66,6 @@ export default function RootLayout({
           <CssBaseline />
           <MuiNavBar mode={mode} toggleColorMode={toggleColorMode} />
           <main style={{ flex: 1 }}>{children}</main>
-          <Divider />
           <Footer />
         </ThemeProvider>
       </body>
