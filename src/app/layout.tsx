@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { useEffect } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -22,9 +22,17 @@ export default function RootLayout({
 }>) {
   const [mode, setMode] = React.useState<PaletteMode>('light');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedMode = localStorage.getItem('themeMode') as PaletteMode;
+      setMode(savedMode || 'light');
+    }
+  }, []);
+
   const toggleColorMode = () => {
     setMode((prevMode) => {
       const newMode = prevMode === 'light' ? 'dark' : 'light';
+      localStorage.setItem('themeMode', newMode);
       return newMode;
     });
   };
