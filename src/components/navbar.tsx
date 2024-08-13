@@ -1,10 +1,11 @@
 'use client';
 
-import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Stack, Button, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText, Box, PaletteMode } from "@mui/material";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGO from '../assets/Stageholder_Logo-03.png';
+import ToggleColorMode from "./toggleColorMode";
 
 interface MenuItem {
     text: string;
@@ -12,7 +13,12 @@ interface MenuItem {
     variant?: 'text' | 'outlined' | 'contained';
 }
 
-export const MuiNavBar = () => {
+interface AppAppBarProps {
+    mode: PaletteMode;
+    toggleColorMode: () => void;
+}
+
+export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -26,8 +32,8 @@ export const MuiNavBar = () => {
     };
 
     const menuItems: MenuItem[] = [
-        { text: 'Home', href: '/' },
-        { text: 'Features', href: '/features' }, //kalo mau dibikin slide tinggal ganti "/" jadi "#" nih dot
+        { text: 'Home', href: '/',  },
+        { text: 'Features', href: '/features' },
         { text: 'About Us', href: '/about-us' },
         { text: 'Pricing', href: '/pricing' },
         { text: 'Login', href: '#login', variant: 'outlined' },
@@ -35,8 +41,16 @@ export const MuiNavBar = () => {
     ];
 
     return (
-        <AppBar position="fixed" sx={{ backgroundColor: "white", boxShadow: "none" }}>
-            <Toolbar>
+        <AppBar position="fixed" sx={{ backgroundColor: mode === 'light' ? "white" : "#333", boxShadow: "none" }}>
+            <Toolbar
+                variant="regular"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    bgcolor: mode === 'light' ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.4)',
+                }}
+            >
                 <Box
                     sx={{
                         display: 'flex',
@@ -60,17 +74,30 @@ export const MuiNavBar = () => {
                         <IconButton
                             size="large"
                             edge="end"
-                            sx={{ color: "black" }}
+                            sx={{ color: mode === 'light' ? "black" : "white" }}
                             aria-label="menu"
                             onClick={drawerOpen}
                         >
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
-                            <List sx={{ width: 250 }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+                            </Box>
+                            <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#424242' }}>
                                 {menuItems.map((item, index) => (
-                                    <Button key={index} href={item.href} sx={{ display: 'flex', justifyContent: 'flex-start', fontWeight: 'bold', color: 'black' }}>
-                                        <ListItem button key={index} onClick={() => { drawerClose(); }}>
+                                    <Button 
+                                        key={index}
+                                        href={item.href}
+                                        sx={{ 
+                                            display: 'flex',
+                                            justifyContent: 'flex-start',
+                                            fontWeight: 'bold',
+                                            color: mode === 'light' ? 'black' : 'white',
+                                        }}
+                                        onClick={drawerClose}
+                                    >
+                                        <ListItem button key={index}>
                                             <ListItemText primary={item.text} />
                                         </ListItem>
                                     </Button>
@@ -86,9 +113,9 @@ export const MuiNavBar = () => {
                                 variant={item.variant || "text"}
                                 href={item.href}
                                 sx={{
-                                    color: item.variant ? (item.variant === 'contained' ? 'white' : '#212B36') : '#212B36',
-                                    borderColor: item.variant === 'outlined' ? '#212B36' : 'none',
-                                    backgroundColor: item.variant === 'contained' ? '#212B36' : 'none',
+                                    color: item.variant ? (item.variant === 'contained' ? 'white' : (mode === 'light' ? '#212B36' : '#E0E0E0')) : (mode === 'light' ? '#212B36' : '#E0E0E0'),
+                                    borderColor: item.variant === 'outlined' ? (mode === 'light' ? '#212B36' : '#E0E0E0') : 'none',
+                                    backgroundColor: item.variant === 'contained' ? (mode === 'light' ? '#212B36' : '#555') : 'none',
                                     textTransform: 'none',
                                     fontWeight: 'bold'
                                 }}
@@ -96,6 +123,9 @@ export const MuiNavBar = () => {
                                 {item.text}
                             </Button>
                         ))}
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+                        </Box>
                     </Stack>
                 )}
             </Toolbar>
