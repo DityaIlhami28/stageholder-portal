@@ -78,9 +78,9 @@ const tiers = [
   }
 ];
 
-const defaultTheme = createTheme();
 
 export default function Pricing() {
+  const defaultTheme = createTheme();
   const [value, setValue] = React.useState('Stage Standard');
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
@@ -107,7 +107,7 @@ export default function Pricing() {
           color="text.primary"
           gutterBottom
           fontWeight='bold'
-          sx={{ mt: 5, mb: 3 }}
+          sx={{ mt: 5, mb: 3}}
         >
           The right plan <br /> for your business
         </Typography>

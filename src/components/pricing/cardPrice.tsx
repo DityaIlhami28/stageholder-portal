@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MaximizeIcon from '@mui/icons-material/Maximize';
 import JSLOGO from '@/assets/JavaScript-Symbol.png';
 import TSLOGO from '@/assets/typescript-icon.png';
-// import FIGMALOGO from '@/assets/figma-logo.png';
+import FIGMALOGO from '@/assets/figma-logo.png';
 import Image from 'next/image';
 
 // Define keyframe animations
@@ -79,9 +79,9 @@ const tiers = [
     },
 ];
 
-const theme = createTheme();
 
 export default function CardPrice({ selectedStage }: { selectedStage: any }) {
+    const theme = createTheme();
     return (
         <Grid container spacing={4}>
             {tiers[0].subheader.map((header, index) => {
@@ -173,6 +173,14 @@ export default function CardPrice({ selectedStage }: { selectedStage: any }) {
                                             <Image
                                                 src={TSLOGO}
                                                 alt='TypeScript Logo'
+                                                layout='responsive'
+                                                width={4}
+                                                height={4}
+                                                style={{ marginRight: '10px' }}
+                                            />
+                                            <Image
+                                                src={FIGMALOGO}
+                                                alt='Figma Logo'
                                                 layout='responsive'
                                                 width={4}
                                                 height={4}
