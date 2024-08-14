@@ -73,6 +73,7 @@ const LandingPageContainer = () => {
               }}
             >
               <TypeAnimation
+                key={theme.palette.mode}
                 sequence={[
                   'We manage asset maintenance.',
                   1000,
@@ -88,7 +89,7 @@ const LandingPageContainer = () => {
                   1000,
                 ]}
                 speed={50}
-                style={{ fontSize: 'inherit', color: theme.palette.text.primary }}
+                style={{ fontSize: 'inherit', color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000' }}
                 wrapper="span"
                 repeat={Infinity}
               />
