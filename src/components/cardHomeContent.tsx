@@ -70,7 +70,7 @@ const CardHomeContent = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212', // Full background color
+        backgroundColor: theme.palette.mode === 'light' ? 'white' : '#161C24', // Full background color
       }}
     >
       <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center', mt: 10 }}>
@@ -88,13 +88,13 @@ const CardHomeContent = () => {
                   sx={{
                     height: 300,
                     width: '100%',
-                    bgcolor: theme.palette.background.paper, // Use the theme's background color
+                    bgcolor: 'transparent',
                     color: theme.palette.text.primary, // Use the theme's text color
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    boxShadow: 'none',  // Remove box shadow
-                    border: 'none',      // Remove border
+                    boxShadow: 'none',
+                    border: 'none',
                   }}
                 >
                   <CardContent style={{ textAlign: 'center' }}>

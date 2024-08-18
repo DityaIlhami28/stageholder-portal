@@ -45,8 +45,8 @@ export default function RootLayout({
           ...(mode === 'dark'
             ? {
               background: {
-                default: '#121212',
-                paper: '#424242',
+                default: '#161C24',
+                paper: '#161C24',
               },
               text: {
                 primary: '#ffffff',
@@ -74,7 +74,7 @@ export default function RootLayout({
           <CssBaseline />
           <MuiNavBar mode={mode} toggleColorMode={toggleColorMode} />
           <main style={{ flex: 1 }}>{children}</main>
-          <Footer />
+          <Footer mode={mode} toggleColorMode={toggleColorMode} />
         </ThemeProvider>
       </body>
     </html>

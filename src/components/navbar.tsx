@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGO from '../assets/Stageholder_Logo-03.png';
+import LOGODARK from '../assets/Stageholder_Logo-02.png';
 import ToggleColorMode from "./toggleColorMode";
 
 interface MenuItem {
@@ -22,6 +23,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const navLogo = theme.palette.mode === 'light' ? LOGO : LOGODARK
 
     const drawerOpen = () => {
         setOpenDrawer(true);
@@ -32,7 +34,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
     };
 
     const menuItems: MenuItem[] = [
-        { text: 'Home', href: '/',  },
+        { text: 'Home', href: '/' },
         { text: 'Features', href: '/features' },
         { text: 'About Us', href: '/about-us' },
         { text: 'Pricing', href: '/pricing' },
@@ -48,7 +50,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    bgcolor: mode === 'light' ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.4)',
+                    bgcolor: mode === 'light' ? 'rgba(255, 255, 255)' : 'rgba(22, 28, 36)',
                 }}
             >
                 <Box
@@ -61,7 +63,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                     }}
                 >
                     <Image
-                        src={LOGO}
+                        src={navLogo}
                         alt="Stageholder Logo"
                         width={300}
                         height={300}
@@ -113,9 +115,9 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                                 variant={item.variant || "text"}
                                 href={item.href}
                                 sx={{
-                                    color: item.variant ? (item.variant === 'contained' ? 'white' : (mode === 'light' ? '#212B36' : '#E0E0E0')) : (mode === 'light' ? '#212B36' : '#E0E0E0'),
+                                    color: item.text === 'Register' ? (mode === 'dark' ? 'black' : 'white') : (item.variant ? (item.variant === 'contained' ? 'white' : (mode === 'light' ? '#212B36' : '#E0E0E0')) : (mode === 'light' ? '#212B36' : '#E0E0E0')),
                                     borderColor: item.variant === 'outlined' ? (mode === 'light' ? '#212B36' : '#E0E0E0') : 'none',
-                                    backgroundColor: item.variant === 'contained' ? (mode === 'light' ? '#212B36' : '#555') : 'none',
+                                    backgroundColor: item.variant === 'contained' ? (mode === 'light' ? '#212B36' : '#ffffff') : 'none',
                                     textTransform: 'none',
                                     fontWeight: 'bold'
                                 }}
