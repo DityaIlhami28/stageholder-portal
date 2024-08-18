@@ -2,20 +2,18 @@ import React from 'react';
 import { Box, Container, Typography, Link, useTheme, PaletteMode } from '@mui/material';
 import Image from 'next/image';
 import LOGO from '../assets/Stageholder_Logo-03.png'; // Light mode logo
-import LOGODARK from '../assets/Stageholder_Logo-02.png'; // Dark mode logo'
-import ToggleColorMode from "./toggleColorMode";
+import LOGODARK from '../assets/Stageholder_Logo-02.png'; // Dark mode logo
 
-
-interface AppAppBarProps {
+interface FooterProps {
+    description?: string; // Make description optional
+    title?: string;
     mode: PaletteMode;
     toggleColorMode: () => void;
 }
 
+function Copyright({ mode, toggleColorMode }: FooterProps) {
+    const theme = useTheme();
 
-function Copyright({ mode, toggleColorMode }: AppAppBarProps) {
-    const theme = useTheme(); // Access the current theme
-
-    // Choose the appropriate logo based on the theme mode
     const logo = theme.palette.mode === 'light' ? LOGO : LOGODARK;
 
     return (
@@ -33,14 +31,7 @@ function Copyright({ mode, toggleColorMode }: AppAppBarProps) {
     );
 }
 
-interface FooterProps {
-    description?: string; // Make description optional
-    title?: string;
-}
-
-export default function Footer(props: FooterProps) {
-    const { description, title } = props;
-
+export default function Footer({ description, title, mode, toggleColorMode }: FooterProps) {
     return (
         <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3}}>
             <Container maxWidth="lg">
@@ -52,9 +43,7 @@ export default function Footer(props: FooterProps) {
                         {description}
                     </Typography>
                 )}
-                <Copyright mode={'light'} toggleColorMode={function (): void {
-                    throw new Error('Function not implemented.');
-                } } />
+                <Copyright mode={mode} toggleColorMode={toggleColorMode} />
             </Container>
         </Box>
     );
