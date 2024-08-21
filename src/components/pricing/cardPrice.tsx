@@ -83,7 +83,7 @@ const tiers = [
 export default function CardPrice({ selectedStage }: { selectedStage: any }) {
     const theme = createTheme();
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={8} sx={{ display: 'flex', justifyContent: 'center', mb: 10 }}>
             {tiers[0].subheader.map((header, index) => {
                 if (typeof window !== 'undefined' && selectedStage !== header && window.innerWidth < 960) return null; // Hide other stages on mobile
 

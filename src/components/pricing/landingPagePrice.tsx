@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react';
-import { Grid, Tab, Tabs } from '@mui/material';
+import { Grid, Tab, Tabs, useMediaQuery } from '@mui/material';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -82,6 +82,7 @@ const tiers = [
 export default function Pricing() {
   const theme = useTheme();
   const [value, setValue] = React.useState('Stage Standard');
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
@@ -115,34 +116,57 @@ export default function Pricing() {
           Choose the plan for your needs. Always flexible to grow
         </Typography>
       </Container>
+      {isMobile ? (
+        <Container maxWidth="md" component="main" sx={{ border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', mt: 5 }}>
+          <Grid>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              sx={{
+                mt: 5,
+                pt: 5,
+                background: theme.palette.mode === 'light' ? 'white' : '#121212',
+              }}
+            >
+              {tiers[0].subheader.map((header) => (
+                <Tab key={header} value={header} label={header} />
+              ))}
+            </Tabs>
+          </Grid>
 
-      <Container maxWidth="md" component="main" sx={{ mt: 8, mb: 5, border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Grid>
-          <Tabs
-            value={value}
-            onChange={handleChange}
+          <Box
             sx={{
-              mt: 5,
-              pt: 5,
-              background: theme.palette.mode === 'light' ? 'white' : '#121212',
-            }}
-          >
-            {tiers[0].subheader.map((header) => (
-              <Tab key={header} value={header} label={header} />
-            ))}
-          </Tabs>
-        </Grid>
-      </Container>
-      <Box
-        sx={{
-          border: `none`,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <PricingCard selectedStage={value} />
-      </Box>
+              border: `none`,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+            }}>
+            <PricingCard selectedStage={value} />
+          </Box>
+        </Container>
+
+      ) : (
+        <Box sx={{ border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <Box
+            sx={{
+              border: `none`,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '75%',
+            }}>
+            <PricingCard selectedStage={value} />
+          </Box>
+        </Box>
+
+      )}
+
+
+
+
     </ThemeProvider>
   );
 }
