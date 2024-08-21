@@ -13,7 +13,7 @@ const AboutPage = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212', // Full background color
+                    backgroundColor: theme.palette.mode === 'light' ? 'white' : '#161C24', // Full background color
                 }}
             >
                 <Container id="about-us" sx={{ py: 4, mb: 10, mt: 10 }}>

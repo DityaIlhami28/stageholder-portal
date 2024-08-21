@@ -12,7 +12,7 @@ export default function Pricing() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212', // Full background color
+                        backgroundColor: theme.palette.mode === 'light' ? 'white' : '#161C24', // Full background color
                     }}>
                     <Box>
 
