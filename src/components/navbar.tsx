@@ -83,10 +83,10 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', backgroundColor: mode === 'light' ? 'white' : '#212B36'}}>
                                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                             </Box>
-                            <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#424242' }}>
+                            <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#212B36', height: '100vh'  }}>
                                 {menuItems.map((item, index) => (
                                     <Button 
                                         key={index}
@@ -96,6 +96,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                                             justifyContent: 'flex-start',
                                             fontWeight: 'bold',
                                             color: mode === 'light' ? 'black' : 'white',
+                                            backgroundColor: mode === 'light' ? 'white' : '#212B36'
                                         }}
                                         onClick={drawerClose}
                                     >
