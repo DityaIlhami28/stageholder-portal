@@ -6,6 +6,7 @@ import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGO from '../assets/Stageholder_Logo-03.png';
 import ToggleColorMode from "./toggleColorMode";
+import Link from "next/link";
 
 interface MenuItem {
     text: string;
@@ -32,7 +33,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
     };
 
     const menuItems: MenuItem[] = [
-        { text: 'Home', href: '/',  },
+        { text: 'Home', href: '/', },
         { text: 'Features', href: '/features' },
         { text: 'About Us', href: '/about-us' },
         { text: 'Pricing', href: '/pricing' },
@@ -86,21 +87,22 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                             </Box>
                             <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#424242' }}>
                                 {menuItems.map((item, index) => (
-                                    <Button 
-                                        key={index}
-                                        href={item.href}
-                                        sx={{ 
-                                            display: 'flex',
-                                            justifyContent: 'flex-start',
-                                            fontWeight: 'bold',
-                                            color: mode === 'light' ? 'black' : 'white',
-                                        }}
-                                        onClick={drawerClose}
-                                    >
-                                        <ListItem button key={index}>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                    </Button>
+                                    <Link href={item.href}>
+                                        <Button
+                                            key={index}
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'flex-start',
+                                                fontWeight: 'bold',
+                                                color: mode === 'light' ? 'black' : 'white',
+                                            }}
+                                            onClick={drawerClose}
+                                        >
+                                            <ListItem button key={index}>
+                                                <ListItemText primary={item.text} />
+                                            </ListItem>
+                                        </Button>
+                                    </Link>
                                 ))}
                             </List>
                         </Drawer>
@@ -108,20 +110,21 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                 ) : (
                     <Stack direction='row' spacing={3} sx={{ mx: "100px" }}>
                         {menuItems.map((item, index) => (
-                            <Button
-                                key={index}
-                                variant={item.variant || "text"}
-                                href={item.href}
-                                sx={{
-                                    color: item.variant ? (item.variant === 'contained' ? 'white' : (mode === 'light' ? '#212B36' : '#E0E0E0')) : (mode === 'light' ? '#212B36' : '#E0E0E0'),
-                                    borderColor: item.variant === 'outlined' ? (mode === 'light' ? '#212B36' : '#E0E0E0') : 'none',
-                                    backgroundColor: item.variant === 'contained' ? (mode === 'light' ? '#212B36' : '#555') : 'none',
-                                    textTransform: 'none',
-                                    fontWeight: 'bold'
-                                }}
-                            >
-                                {item.text}
-                            </Button>
+                            <Link href={item.href}>
+                                <Button
+                                    key={index}
+                                    variant={item.variant || "text"}
+                                    sx={{
+                                        color: item.variant ? (item.variant === 'contained' ? 'white' : (mode === 'light' ? '#212B36' : '#E0E0E0')) : (mode === 'light' ? '#212B36' : '#E0E0E0'),
+                                        borderColor: item.variant === 'outlined' ? (mode === 'light' ? '#212B36' : '#E0E0E0') : 'none',
+                                        backgroundColor: item.variant === 'contained' ? (mode === 'light' ? '#212B36' : '#555') : 'none',
+                                        textTransform: 'none',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
+                                    {item.text}
+                                </Button>
+                            </Link>
                         ))}
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
