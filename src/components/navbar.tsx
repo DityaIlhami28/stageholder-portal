@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGO from '../assets/Stageholder_Logo-03.png';
+import LOGODARK from '../assets/Stageholder_Logo-02.png';
 import ToggleColorMode from "./toggleColorMode";
 import Link from "next/link";
 
@@ -23,6 +24,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const navLogo = theme.palette.mode === 'light' ? LOGO : LOGODARK
 
     const drawerOpen = () => {
         setOpenDrawer(true);
@@ -49,7 +51,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    bgcolor: mode === 'light' ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.4)',
+                    bgcolor: mode === 'light' ? 'rgba(255, 255, 255)' : 'rgba(22, 28, 36)',
                 }}
             >
                 <Box
@@ -62,7 +64,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                     }}
                 >
                     <Image
-                        src={LOGO}
+                        src={navLogo}
                         alt="Stageholder Logo"
                         width={300}
                         height={300}
@@ -82,10 +84,10 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="right" open={openDrawer} onClose={drawerClose}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', backgroundColor: mode === 'light' ? 'white' : '#212B36' }}>
                                 <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                             </Box>
-                            <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#424242' }}>
+                            <List sx={{ width: 250, bgcolor: mode === 'light' ? 'white' : '#212B36', height: '100vh' }}>
                                 {menuItems.map((item, index) => (
                                     <Link href={item.href}>
                                         <Button
@@ -125,6 +127,7 @@ export const MuiNavBar = ({ mode, toggleColorMode }: AppAppBarProps) => {
                                     {item.text}
                                 </Button>
                             </Link>
+
                         ))}
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />

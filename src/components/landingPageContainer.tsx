@@ -4,10 +4,12 @@ import React from 'react';
 import { Box, Typography, Container, useTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import Image from 'next/image';
 import LOGO from '../assets/Stageholder_Logo-05.png';
+import LOGODARK from '../assets/Stageholder_Logo-04.png'
 import { TypeAnimation } from 'react-type-animation';
 
 const LandingPageContainer = () => {
   const theme = useTheme();
+  const logo = theme.palette.mode === 'light' ? LOGO : LOGODARK
 
   return (
     <ThemeProvider theme={theme}>
@@ -18,7 +20,7 @@ const LandingPageContainer = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: theme.palette.mode === 'light' ? 'white' : '#121212', // Full background color
+          backgroundColor: theme.palette.mode === 'light' ? 'white' : '#161C24', // Full background color
         }}
       >
         <Container
@@ -55,7 +57,7 @@ const LandingPageContainer = () => {
             >
               <Box sx={{ width: { xs: '80%', sm: '70%', md: '60%', lg: '50%' } }}>
                 <Image
-                  src={LOGO}
+                  src={logo}
                   alt="Stageholder Logo"
                   width={500}
                   height={120}

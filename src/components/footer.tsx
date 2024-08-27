@@ -1,12 +1,24 @@
 import React from 'react';
-import { Box, Container, Typography, Link } from '@mui/material';
+import { Box, Container, Typography, Link, useTheme, PaletteMode } from '@mui/material';
 import Image from 'next/image';
-import LOGO from '../assets/Stageholder_Logo-03.png'; // Adjust the path as necessary
+import LOGO from '../assets/Stageholder_Logo-03.png'; // Light mode logo
+import LOGODARK from '../assets/Stageholder_Logo-02.png'; // Dark mode logo
 
-function Copyright() {
+interface FooterProps {
+    description?: string; // Make description optional
+    title?: string;
+    mode: PaletteMode;
+    toggleColorMode: () => void;
+}
+
+function Copyright({ mode, toggleColorMode }: FooterProps) {
+    const theme = useTheme();
+
+    const logo = theme.palette.mode === 'light' ? LOGO : LOGODARK;
+
     return (
         <div style={{ textAlign: 'center' }}>
-            <Image src={LOGO} alt="Stageholder Logo" width={50} height={50} />
+            <Image src={logo} alt="Stageholder Logo" width={50} height={50} />
             <Typography variant="body2" color="text.secondary">
                 {'© All rights reserved'}
                 <br />
@@ -19,16 +31,9 @@ function Copyright() {
     );
 }
 
-interface FooterProps {
-    description?: string; // Make description optional
-    title?: string;
-}
-
-export default function Footer(props: FooterProps) {
-    const { description, title } = props;
-
+export default function Footer({ description, title, mode, toggleColorMode }: FooterProps) {
     return (
-        <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }}>
+        <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3}}>
             <Container maxWidth="lg">
                 <Typography variant="h6" align="center" gutterBottom>
                     {title}
@@ -38,7 +43,7 @@ export default function Footer(props: FooterProps) {
                         {description}
                     </Typography>
                 )}
-                <Copyright />
+                <Copyright mode={mode} toggleColorMode={toggleColorMode} />
             </Container>
         </Box>
     );
